@@ -13,27 +13,34 @@ const SignIn = () => {
   const [cursorStyle, setCursorStyle] = useState("default");
 
   const handleSignIn = async (e) => {
-    e.preventDefault();
-    setLoggingIn(true);
-    setMessage("");
+  e.preventDefault();
+  setLoggingIn(true);
+  setMessage("");
 
-    try {
-      const response = await axios.post(
-        `${API}/api/auth/login`,
-        { email, password },
-        { withCredentials: true }
-      );
+  try {
+    const response = await axios.post(
+      `${API}/api/auth/login`,
+      { email, password },
+      { withCredentials: true }
+    );
 
-      if (response.status === 200) {
-        // Redirect to dashboard app
-        window.location.href = DASHBOARD_URL;
-      }
-    } catch (error) {
-      setMessage(error.response?.data?.message || "Sign In failed!");
-    } finally {
-      setLoggingIn(false);
+    if (response.status === 200) {
+      
+      const { token } = response.data;
+
+      
+      localStorage.setItem("token", token);
+
+      
+      window.location.href = process.env.DASHBOARD_URL;
     }
-  };
+  } catch (error) {
+    setMessage(error.response?.data?.message || "Sign In failed!");
+  } finally {
+    setLoggingIn(false);
+  }
+};
+
 
   return (
     <div className="container text-center p-5">
