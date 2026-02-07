@@ -21,9 +21,8 @@ const uri = process.env.MONGO_URL;
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",
-      "http://localhost:3001",
-
+      process.env.CLIENT_URL,
+      process.env.DASHBOARD_URL,
     ],
     credentials: true,
   })
