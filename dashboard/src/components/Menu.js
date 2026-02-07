@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Menu = () => {
-  const [selected, setSelected] = useState(0);
+  // const [selected, setSelected] = useState(0);
 
   const menuItem = "menu-item";
   const activeItem = "menu-item active";
