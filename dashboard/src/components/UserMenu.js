@@ -31,7 +31,7 @@ const UserMenu = () => {
       await axios.post(
         `${API}/api/auth/logout`,
         {},
-        { withCredentials: true }
+        // { withCredentials: true }
       );
     } catch (err) {
       console.error(err);

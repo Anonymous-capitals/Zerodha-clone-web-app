@@ -11,9 +11,11 @@ const Holdings = () => {
   useEffect(() => {
     const fetchHoldings = async () => {
       try {
-        const res = await axios.get(`${API}/allHoldings`, {
-          withCredentials: true,
-        });
+        const res = await axios.get(`${API}/allHoldings`, 
+        // {
+        //   withCredentials: true,
+        // }
+      );
         setHoldings(res.data || []);
       } catch (err) {
         console.error("Failed to load holdings", err);
