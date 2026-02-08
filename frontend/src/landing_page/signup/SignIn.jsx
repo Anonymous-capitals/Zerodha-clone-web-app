@@ -30,7 +30,7 @@ const SignIn = () => {
         window.location.href = DASHBOARD_URL;
       }
     } catch (error) {
-      setMessage(error.response?.data?.message || "Sign In failed!");
+      setMessage(error.response?.data?.message || "Log In failed!");
     } finally {
       setLoggingIn(false);
     }
