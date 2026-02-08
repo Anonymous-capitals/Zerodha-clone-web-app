@@ -16,7 +16,6 @@ const PORT = process.env.PORT || 5000;
 const uri = process.env.MONGO_URL;
 
 
-const cors = require("cors");
 
 const allowedOrigins = [
   "https://zerodha-clone-web-app.vercel.app/",
