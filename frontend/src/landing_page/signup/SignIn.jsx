@@ -21,7 +21,7 @@ const SignIn = () => {
       const response = await axios.post(
         `${API}/api/auth/login`,
         { email, password },
-        { withCredentials: true }
+        { withCredentials: false }
         
       );
 

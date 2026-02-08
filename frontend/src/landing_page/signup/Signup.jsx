@@ -23,7 +23,7 @@ const SignUp = () => {
       const response = await axios.post(
         `${API}/api/auth/signup`,
         { email, username, password },
-        { withCredentials: true }
+        { withCredentials: false }
       );
 
       if (response.status === 201) {
