@@ -16,30 +16,24 @@ const PORT = process.env.PORT || 5000;
 const uri = process.env.MONGO_URL;
 
 
+const cors = require("cors");
+
 const allowedOrigins = [
-  process.env.CLIENT_URL,
-  process.env.DASHBOARD_URL,
+  "https://zerodha-clone-web-app.vercel.app/",
+  "https://zerodha-clone-web-app-45ll.vercel.app",
 ];
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: false, 
   })
 );
 
+// IMPORTANT: allow preflight requests
 app.options("*", cors());
+
 
 
 
