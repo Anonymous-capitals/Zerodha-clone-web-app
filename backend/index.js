@@ -15,30 +15,22 @@ const authRoute = require("./Routes/AuthRoute");
 const PORT = process.env.PORT || 5000;
 const uri = process.env.MONGO_URL;
 
-/* =======================
-   CORS CONFIG (CORRECT)
-======================= */
+
 app.use(
   cors({
-     origin: true,
-    // [
-    //   process.env.CLIENT_URL,
-    //   process.env.DASHBOARD_URL,
-    // ],
+     origin:[
+      process.env.CLIENT_URL,
+      process.env.DASHBOARD_URL,
+    ], 
     credentials: true,
   })
 );
 
-/* =======================
-   MIDDLEWARE
-======================= */
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-/* =======================
-   ROUTES
-======================= */
 app.get("/allHoldings", async (req, res) => {
   res.json(await HoldingsModel.find({}));
 });
@@ -57,12 +49,10 @@ app.post("/newOrder", async (req, res) => {
   res.send("Order saved!!");
 });
 
-// Auth routes
+
 app.use("/api/auth", authRoute);
 
-/* =======================
-   DB + SERVER
-======================= */
+
 mongoose
   .connect(uri)
   .then(() => {
