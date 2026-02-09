@@ -1,10 +1,11 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const ProtectedRoute = () => {
   const token = localStorage.getItem("token");
 
   if (!token) {
-    return <Navigate to="/" replace />;
+    window.location.href = process.env.REACT_APP_URL;
+    return null;
   }
 
   return <Outlet />;
