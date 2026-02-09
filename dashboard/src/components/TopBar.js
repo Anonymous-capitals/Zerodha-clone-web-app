@@ -10,7 +10,7 @@ const TopBar = () => {
       {/* Left: Logo */}
       <div className="topbar-left">
         <Link to="/">
-          <img src="/logo.png" alt="Zerodha" className="topbar-logo" />
+          <img src="logo.png" alt="Zerodha" className="topbar-logo" />
         </Link>
       </div>
 
