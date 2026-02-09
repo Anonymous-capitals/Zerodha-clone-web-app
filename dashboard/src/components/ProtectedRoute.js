@@ -11,7 +11,7 @@ const ProtectedRoute = () => {
 
  
   if (!user) {
-    window.location.href = process.env.REACT_APP_URL;
+    window.location.href = process.env.REACT_APP_FRONTEND_URL;
     return null;
   }
 
