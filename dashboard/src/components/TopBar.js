@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Menu from "./Menu";
 import UserMenu from "./UserMenu";
-// import logo from "../public/logo.png"; // adjust path if needed
+import logo from "../public/logo.png"; 
 
 const TopBar = () => {
   return (
@@ -10,7 +10,7 @@ const TopBar = () => {
       {/* Left: Logo */}
       <div className="topbar-left">
         <Link to="/">
-          <img src="/logo.png" alt="Zerodha" className="topbar-logo" />
+          <img src={logo} alt="Zerodha" className="topbar-logo" />
         </Link>
       </div>
 

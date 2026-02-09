@@ -1,21 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
-import axios from "axios";
 import "./UserMenu.css";
 
-const API = process.env.REACT_APP_API_BASE_URL;
-
-
 const UserMenu = () => {
-  const { user, setIsAuthenticated, setUser } = useAuth();
+  const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
-  const navigate = useNavigate();
 
   const firstLetter = user?.username?.charAt(0).toUpperCase() || "U";
 
-  // close dropdown on outside click
+  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -26,22 +20,6 @@ const UserMenu = () => {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const logout = async () => {
-    try {
-      await axios.post(
-        `${API}/api/auth/logout`,
-        {},
-        // { withCredentials: true }
-      );
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setIsAuthenticated(false);
-      setUser(null);
-      navigate("/");
-    }
-  };
-
   return (
     <div className="user-menu" ref={menuRef}>
       <div className="avatar" onClick={() => setOpen(!open)}>
@@ -50,7 +28,14 @@ const UserMenu = () => {
 
       {open && (
         <div className="dropdown">
-          <button onClick={() => navigate("/profile")}>Profile</button>
+          <button
+            onClick={() => {
+              window.location.href = "/profile";
+            }}
+          >
+            Profile
+          </button>
+
           <button className="logout" onClick={logout}>
             Logout
           </button>
