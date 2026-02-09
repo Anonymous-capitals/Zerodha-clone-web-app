@@ -27,6 +27,7 @@ const SignIn = () => {
 
       if (response.status === 200) {
         // Redirect to dashboard app
+        localStorage.setItem("token", response.data.token);
         window.location.href = DASHBOARD_URL;
       }
     } catch (error) {

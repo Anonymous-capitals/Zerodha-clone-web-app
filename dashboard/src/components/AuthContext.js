@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }) => {
         }
       );
 
-      setUser(res.data.user || null);
+      setUser(res.data.user);
     } catch (err) {
       console.error("Verify failed:", err.message);
       setUser(null);

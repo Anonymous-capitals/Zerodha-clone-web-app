@@ -125,7 +125,7 @@ app.post("/newOrder", async (req, res) => {
   res.send("Order saved!!");
 });
 
-app.use("/api/auth", authRoute);
+app.use("/api/auth", require("./Routes/AuthRoute"));
 
 
 mongoose

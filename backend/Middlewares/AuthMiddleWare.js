@@ -3,27 +3,39 @@ const UserModel = require("../models/UserModel");
 
 module.exports.userVerification = async (req, res) => {
   try {
-    const token = req.cookies.token;
+    const authHeader = req.headers.authorization;
 
-    if (!token) {
-      return res.json({ success: false });
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({
+        authenticated: false,
+        message: "No token provided",
+      });
     }
 
+    const token = authHeader.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    const user = await UserModel.findById(decoded.id).select(
-      "username email createdAt"
-    );
+    const user = await UserModel.findById(decoded.id).select("-password");
 
     if (!user) {
-      return res.json({ success: false });
+      return res.status(401).json({
+        authenticated: false,
+        message: "User not found",
+      });
     }
 
-    return res.json({
+    return res.status(200).json({
       authenticated: true,
-      user,
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+      },
     });
   } catch (error) {
-    return res.json({ success: false });
+    return res.status(401).json({
+      authenticated: false,
+      message: "Invalid token",
+    });
   }
 };
