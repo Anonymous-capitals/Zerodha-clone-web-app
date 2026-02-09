@@ -1,13 +1,21 @@
 import { Outlet } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 
 const ProtectedRoute = () => {
-  const token = localStorage.getItem("token");
+  const { user, loading } = useAuth();
 
-  if (!token) {
+  
+  if (loading) {
+    return null; 
+  }
+
+ 
+  if (!user) {
     window.location.href = process.env.REACT_APP_URL;
     return null;
   }
 
+  
   return <Outlet />;
 };
 
