@@ -98,7 +98,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
-    window.location.href = process.env.REACT_APP_URL;
+    window.location.href = process.env.REACT_APP_FRONTEND_URL;
   };
 
   return (
