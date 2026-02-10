@@ -86,18 +86,32 @@ const { PositionsModel } = require("./models/PositionsModel");
 const { OrdersModel } = require("./models/OrdersModel");
 
 const authRoute = require("./Routes/AuthRoute");
-
+const FRONTEND_URL = process.env.CLIENT_URL;
+const Dashboard_URL = process.env.DASHBOARD_URL;
 const PORT = process.env.PORT || 5000;
 const uri = process.env.MONGO_URL;
+
+const allowedOrigins = [
+  FRONTEND_URL,
+  Dashboard_URL
+];
 
 
 app.use(
   cors({
-    origin: "*",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
 
 
 app.options("*", cors());
