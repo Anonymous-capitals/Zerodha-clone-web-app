@@ -1,26 +1,40 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-
 import axios from "axios";
-
 import GeneralContext from "./GeneralContext";
-
 import "./BuyActionWindow.css";
+
+const API = process.env.REACT_APP_API_BASE_URL; // ✅ FIXED: Use env variable
 
 const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
+  const [loading, setLoading] = useState(false); // ✅ FIXED: Added loading state
   const { closeBuyWindow } = useContext(GeneralContext);
 
-  const handleBuyClick = () => {
-    axios.post("https://zerodha-clone-backend-dmzr.onrender.com/newOrder", {
-      name: uid,
-      qty: stockQuantity,
-      price: stockPrice,
-      mode: "BUY",
-    });
+  const handleBuyClick = async () => { // ✅ FIXED: Made async with error handling
+    setLoading(true);
+    try {
+      if (!stockQuantity || !stockPrice) {
+        alert("Please enter valid quantity and price");
+        return;
+      }
 
-    closeBuyWindow();
+      await axios.post(`${API}/newOrder`, { // ✅ FIXED: Use API env variable
+        name: uid,
+        qty: Number(stockQuantity),
+        price: Number(stockPrice),
+        mode: "BUY",
+      });
+
+      alert("Order placed successfully!");
+      closeBuyWindow();
+    } catch (error) {
+      console.error("Buy order error:", error);
+      alert(error.response?.data?.error || "Failed to place order");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCancelClick = () => {
@@ -39,6 +53,7 @@ const BuyActionWindow = ({ uid }) => {
               id="qty"
               onChange={(e) => setStockQuantity(e.target.value)}
               value={stockQuantity}
+              min="1"
             />
           </fieldset>
           <fieldset>
@@ -50,6 +65,7 @@ const BuyActionWindow = ({ uid }) => {
               step="0.05"
               onChange={(e) => setStockPrice(e.target.value)}
               value={stockPrice}
+              min="0"
             />
           </fieldset>
         </div>
@@ -58,8 +74,8 @@ const BuyActionWindow = ({ uid }) => {
       <div className="buttons">
         <span>Margin required ₹140.65</span>
         <div>
-          <Link className="btn btn-blue" onClick={handleBuyClick}>
-            Buy
+          <Link className="btn btn-blue" onClick={handleBuyClick} disabled={loading}>
+            {loading ? "Processing..." : "Buy"}
           </Link>
           <Link to="" className="btn btn-grey" onClick={handleCancelClick}>
             Cancel

@@ -18,19 +18,22 @@ const SignIn = () => {
     setMessage("");
 
     try {
+      
+      if (!email || !password) {
+        setMessage("Please enter email and password");
+        return;
+      }
+
       const response = await axios.post(
         `${API}/api/auth/login`,
-        { email, password },
-        // { withCredentials: true }
-        
+        { email, password }
       );
 
-      if (response.status === 200) {
-        // Redirect to dashboard app
+      if (response.status === 200 && response.data.token) {
         localStorage.setItem("token", response.data.token);
-        window.location.href = DASHBOARD_URL;
-      }
+        window.location.href = DASHBOARD_URL;   }
     } catch (error) {
+      console.error("SignIn error:", error);
       setMessage(error.response?.data?.message || "Log In failed!");
     } finally {
       setLoggingIn(false);
@@ -68,7 +71,7 @@ const SignIn = () => {
             onMouseLeave={() => setCursorStyle("default")}
             style={{ opacity: "0.85", fontSize: "1.2rem", cursor: cursorStyle }}
           >
-            Don’t have an account? <span style={{ color: "blue" }}>Sign Up ...</span>
+            Don't have an account? <span style={{ color: "blue" }}>Sign Up ...</span>
           </Link>
 
           <form
@@ -78,32 +81,29 @@ const SignIn = () => {
               display: "flex",
               flexDirection: "column",
               width: "17rem",
-              gap: "0.8rem",
-              marginLeft: "8.5rem",
+              margin: "3rem auto",
             }}
           >
             <input
               type="email"
-              placeholder="  Email"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-
             <input
               type="password"
-              placeholder="  Password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-
-            {message && <div style={{ color: "red" }}>{message}</div>}
-
-            <button type="submit" className="btn btn-primary fs-5">
-              {loggingIn ? "Logging in..." : "Log in ..."}
+            <button type="submit" disabled={loggingIn} style={{ marginTop: "1rem" }}>
+              {loggingIn ? "Logging in..." : "Log In"}
             </button>
           </form>
+
+          {message && <p style={{ color: "red", marginTop: "1rem" }}>{message}</p>}
         </div>
       </div>
     </div>

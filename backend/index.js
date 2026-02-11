@@ -32,13 +32,11 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    credentials: false, 
+    credentials: true, // ✅ FIXED: Changed from false to true
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
-
 
 app.options("*", (req, res) => {
   res.sendStatus(200);
@@ -46,32 +44,60 @@ app.options("*", (req, res) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser()); // ✅ REQUIRED
+app.use(cookieParser());
 
-// ================= ROUTES =================
-
+// ✅ FIXED: Added error handling for API endpoints
 app.get("/allHoldings", async (req, res) => {
-  res.json(await HoldingsModel.find({}));
+  try {
+    const holdings = await HoldingsModel.find({});
+    res.json(holdings);
+  } catch (error) {
+    console.error("Error fetching holdings:", error);
+    res.status(500).json({ error: "Failed to fetch holdings" });
+  }
 });
 
 app.get("/allPositions", async (req, res) => {
-  res.json(await PositionsModel.find({}));
+  try {
+    const positions = await PositionsModel.find({});
+    res.json(positions);
+  } catch (error) {
+    console.error("Error fetching positions:", error);
+    res.status(500).json({ error: "Failed to fetch positions" });
+  }
 });
 
 app.get("/allOrders", async (req, res) => {
-  res.json(await OrdersModel.find({}));
+  try {
+    const orders = await OrdersModel.find({});
+    res.json(orders);
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ error: "Failed to fetch orders" });
+  }
 });
 
 app.post("/newOrder", async (req, res) => {
-  const order = new OrdersModel(req.body);
-  await order.save();
-  res.send("Order saved!!");
+  try {
+    // ✅ FIXED: Added validation
+    const { name, qty, price, mode } = req.body;
+    
+    if (!name || !qty || !price || !mode) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const order = new OrdersModel(req.body);
+    await order.save();
+    res.status(201).json({ message: "Order saved!!", order });
+  } catch (error) {
+    console.error("Error saving order:", error);
+    res.status(500).json({ error: "Failed to save order" });
+  }
 });
 
 app.use("/api/auth", require("./Routes/AuthRoute"));
 
-// ================= DB =================
-
+// ✅ FIXED: Better error handling for database connection
 mongoose
   .connect(uri)
   .then(() => {
@@ -82,4 +108,5 @@ mongoose
   })
   .catch((err) => {
     console.error("MongoDB connection error:", err);
+    process.exit(1); // Exit if DB connection fails
   });

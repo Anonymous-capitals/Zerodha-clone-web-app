@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../components/AuthContext";
+
 const API = process.env.REACT_APP_API_BASE_URL;
+
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +13,6 @@ const SignUp = () => {
   const [cursorStyle, setCursorStyle] = useState("default");
 
   const navigate = useNavigate();
-  const { setIsAuthenticated } = useAuth();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -20,19 +20,23 @@ const SignUp = () => {
     setMessage("");
 
     try {
+      
+      if (!email || !username || !password) {
+        setMessage("All fields are required");
+        return;
+      }
+
       const response = await axios.post(
         `${API}/api/auth/signup`,
-        { email, username, password },
-        // { withCredentials: true }
+        { email, username, password }
       );
 
       if (response.status === 201) {
-        // User is created successfully
-        // Redirect to signin (no auto-login here)
-        setIsAuthenticated(false);
-        navigate("/signin");
+        setMessage("Sign up successful! Redirecting to login...");
+        setTimeout(() => navigate("/signin"), 2000);
       }
     } catch (error) {
+      console.error("SignUp error:", error);
       setMessage(error.response?.data?.message || "Sign Up failed!");
     } finally {
       setSigningUp(false);
@@ -80,40 +84,40 @@ const SignUp = () => {
               display: "flex",
               flexDirection: "column",
               width: "17rem",
-              gap: "0.8rem",
-              marginLeft: "8.5rem",
+              margin: "3rem auto",
             }}
           >
             <input
-              type="email"
-              placeholder="  Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-
-            <input
               type="text"
-              placeholder="  Username"
+              placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
-
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
             <input
               type="password"
-              placeholder="  Password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-
-            {message && <div style={{ color: "red" }}>{message}</div>}
-
-            <button type="submit" className="btn btn-primary fs-5">
-              {signingUp ? "Signing up..." : "Sign up ..."}
+            <button type="submit" disabled={signingUp} style={{ marginTop: "1rem" }}>
+              {signingUp ? "Signing up..." : "Sign Up"}
             </button>
           </form>
+
+          {message && (
+            <p style={{ color: message.includes("successful") ? "green" : "red", marginTop: "1rem" }}>
+              {message}
+            </p>
+          )}
         </div>
       </div>
     </div>

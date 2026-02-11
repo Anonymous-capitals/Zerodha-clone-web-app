@@ -2,22 +2,33 @@ const UserModel = require("../models/UserModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-/* ===================== TOKEN ===================== */
+
 const createSecretToken = (id) => {
+ 
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: "3d",
   });
 };
 
-/* ===================== SIGNUP ===================== */
+
 module.exports.Signup = async (req, res) => {
   try {
     const { email, username, password } = req.body;
 
+    
     if (!email || !username || !password) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
+      });
+    }
+
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid email format",
       });
     }
 
@@ -32,7 +43,7 @@ module.exports.Signup = async (req, res) => {
     const user = await UserModel.create({
       email,
       username,
-      password, // hashed in schema
+      password,
     });
 
     const token = createSecretToken(user._id);
@@ -55,7 +66,7 @@ module.exports.Signup = async (req, res) => {
   }
 };
 
-/* ===================== LOGIN ===================== */
+
 module.exports.Login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -103,10 +114,18 @@ module.exports.Login = async (req, res) => {
   }
 };
 
-/* ===================== LOGOUT ===================== */
+
 module.exports.Logout = async (req, res) => {
-  return res.status(200).json({
-    success: true,
-    message: "Logged out successfully",
-  });
+  try {
+    return res.status(200).json({
+      success: true,
+      message: "Logged out successfully",
+    });
+  } catch (error) {
+    console.error("Logout Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
 };
