@@ -13,52 +13,64 @@ const { OrdersModel } = require("./models/OrdersModel");
 const PORT = process.env.PORT || 5000;
 const uri = process.env.MONGO_URL;
 
-// ✅ FIXED: Hardcode your deployed URLs OR use env variables
+// ✅ FIXED: Properly formatted allowed origins with https://
 const allowedOrigins = [
-  "zerodha-clone-web-app.vercel.app",  // Frontend
-  "zerodha-clone-web-app-sklx.vercel.app", // Dashboard (if separate)
+  "https://zerodha-clone-web-app.vercel.app",
+  "https://zerodha-clone-web-app-sklx.vercel.app",
+  "https://zerodha-clone-dashboard.vercel.app",
+  "http://localhost:3000",
+  "http://localhost:3001",
   process.env.CLIENT_URL,
   process.env.DASHBOARD_URL,
 ].filter(Boolean);
 
-console.log("Allowed Origins:", allowedOrigins);
+console.log("✅ Allowed Origins:", allowedOrigins);
 
-// ✅ FIXED: CORS configuration
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) {
-        return callback(null, true);
-      }
+// ✅ CORS middleware - MUST come before routes
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, Postman, curl)
+    if (!origin) {
+      return callback(null, true);
+    }
 
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        console.log("Blocked by CORS:", origin);
-        callback(new Error("CORS policy violation"));
-      }
-    },
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+    // Check if origin is in allowedOrigins
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
 
-// ✅ Handle preflight requests
-app.options("*", cors());
+    // Log blocked origins for debugging
+    console.warn(" CORS blocked origin:", origin);
+    callback(new Error("CORS: Origin not allowed"));
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
+  maxAge: 3600,
+};
 
+app.use(cors(corsOptions));
+
+// ✅ Preflight request handler
+app.options("*", cors(corsOptions));
+
+// ✅ Body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// ✅ API Routes with proper error handling
+// ✅ Health check endpoint (before protected routes)
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "OK", timestamp: new Date().toISOString() });
+});
+
+// ✅ API Routes with error handling
 app.get("/allHoldings", async (req, res) => {
   try {
     const holdings = await HoldingsModel.find({});
-    res.json(holdings);
+    res.status(200).json(holdings);
   } catch (error) {
-    console.error("Error fetching holdings:", error);
+    console.error(" Error fetching holdings:", error);
     res.status(500).json({ error: "Failed to fetch holdings" });
   }
 });
@@ -66,9 +78,9 @@ app.get("/allHoldings", async (req, res) => {
 app.get("/allPositions", async (req, res) => {
   try {
     const positions = await PositionsModel.find({});
-    res.json(positions);
+    res.status(200).json(positions);
   } catch (error) {
-    console.error("Error fetching positions:", error);
+    console.error(" Error fetching positions:", error);
     res.status(500).json({ error: "Failed to fetch positions" });
   }
 });
@@ -76,9 +88,9 @@ app.get("/allPositions", async (req, res) => {
 app.get("/allOrders", async (req, res) => {
   try {
     const orders = await OrdersModel.find({});
-    res.json(orders);
+    res.status(200).json(orders);
   } catch (error) {
-    console.error("Error fetching orders:", error);
+    console.error(" Error fetching orders:", error);
     res.status(500).json({ error: "Failed to fetch orders" });
   }
 });
@@ -88,32 +100,40 @@ app.post("/newOrder", async (req, res) => {
     const { name, qty, price, mode } = req.body;
 
     if (!name || !qty || !price || !mode) {
-      return res.status(400).json({ error: "Missing required fields" });
+      return res.status(400).json({ error: "Missing required fields: name, qty, price, mode" });
     }
 
     const order = new OrdersModel(req.body);
     await order.save();
-    res.status(201).json({ message: "Order saved!!", order });
+    res.status(201).json({ message: "Order saved successfully!", order });
   } catch (error) {
-    console.error("Error saving order:", error);
+    console.error(" Error saving order:", error);
     res.status(500).json({ error: "Failed to save order" });
   }
 });
 
+// ✅ Auth routes
 app.use("/api/auth", require("./Routes/AuthRoute"));
 
-// ✅ Health check endpoint
-app.get("/health", (req, res) => {
-  res.json({ status: "OK" });
+// ✅ 404 handler
+app.use((req, res) => {
+  res.status(404).json({ error: "Route not found" });
+});
+
+// ✅ Error handler middleware
+app.use((err, req, res, next) => {
+  console.error(" Server error:", err);
+  res.status(500).json({ error: err.message || "Internal server error" });
 });
 
 // ✅ Database connection
 mongoose
   .connect(uri)
   .then(() => {
-    console.log("Database Connected");
+    console.log("✅ Database Connected Successfully");
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
+      console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
     });
   })
   .catch((err) => {
