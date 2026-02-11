@@ -2,20 +2,18 @@ const UserModel = require("../models/UserModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-
+/* ===================== TOKEN ===================== */
 const createSecretToken = (id) => {
- 
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: "3d",
   });
 };
 
-
+/* ===================== SIGNUP ===================== */
 module.exports.Signup = async (req, res) => {
   try {
     const { email, username, password } = req.body;
 
-    
     if (!email || !username || !password) {
       return res.status(400).json({
         success: false,
@@ -23,7 +21,6 @@ module.exports.Signup = async (req, res) => {
       });
     }
 
-    
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({
@@ -66,7 +63,7 @@ module.exports.Signup = async (req, res) => {
   }
 };
 
-
+/* ===================== LOGIN ===================== */
 module.exports.Login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -114,7 +111,7 @@ module.exports.Login = async (req, res) => {
   }
 };
 
-
+/* ===================== LOGOUT ===================== */
 module.exports.Logout = async (req, res) => {
   try {
     return res.status(200).json({
