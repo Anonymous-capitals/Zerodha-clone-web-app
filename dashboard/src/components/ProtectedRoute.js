@@ -4,37 +4,38 @@ import { useAuth } from "./AuthContext";
 const ProtectedRoute = () => {
   const { user, loading, error } = useAuth();
 
-  console.log(" ProtectedRoute:", { user, loading, error });
+  console.log("🛡️ ProtectedRoute check:", { user, loading, error });
 
+  // ✅ Show loading state while verifying
   if (loading) {
     return (
-      <div style={{ 
-        padding: "40px", 
+      <div style={{
+        padding: "40px",
         textAlign: "center",
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        flexDirection: "column",
+        backgroundColor: "#f5f5f5"
       }}>
-        <div>
-          <h2>Loading Dashboard...</h2>
-          <p>Authenticating user...</p>
-        </div>
+        <h2>Loading...</h2>
+        <p>Authenticating your session...</p>
+        {error && <p style={{ color: "red" }}>Error: {error}</p>}
       </div>
     );
   }
 
+  // ✅ If NO user after loading, redirect
   if (!user) {
-    console.warn(" ProtectedRoute: No user, redirecting to frontend");
-    if (error) {
-      console.error(" ProtectedRoute: Auth error:", error);
-    }
+    console.warn("🛡️ ProtectedRoute: No user authenticated, redirecting to frontend...");
     const frontendUrl = "https://zerodha-clone-web-app.vercel.app";
-    window.location.href = frontendUrl;
+    // Use replace to prevent back button issues
+    window.location.replace(frontendUrl);
     return null;
   }
 
-  console.log(" ProtectedRoute: User authenticated, rendering dashboard");
+  console.log("✅ ProtectedRoute: User authenticated as:", user.email);
   return <Outlet />;
 };
 

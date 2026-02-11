@@ -1,6 +1,7 @@
+// dashboard/src/index.js - COMPLETE REWRITE
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./components/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -19,10 +20,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <BrowserRouter>
-    {/* AuthProvider should NOT block static assets */}
     <AuthProvider>
       <Routes>
-        {/* Protected routes */}
+        {/* Protected routes - all dashboard pages */}
         <Route element={<ProtectedRoute />}>
           <Route element={<AppLayout />}>
             <Route path="/" element={<Dashboard />} />
@@ -34,6 +34,9 @@ root.render(
             <Route path="/profile" element={<Profile />} />
           </Route>
         </Route>
+        
+        {/* Catch all - redirect to home */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AuthProvider>
   </BrowserRouter>
