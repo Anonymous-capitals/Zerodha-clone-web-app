@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const API = process.env.REACT_APP_API_BASE_URL;
-const DASHBOARD_URL = process.env.REACT_APP_DASHBOARD_URL || "https://zerodha-clone-dashboard.vercel.app"; // ✅ Fallback
+// ✅ HARDCODED URLs for reliability (environment variables may not be available)
+const API = process.env.REACT_APP_API_BASE_URL || "https://zerodha-clone-web-app-backend.onrender.com";
+const DASHBOARD_URL = process.env.REACT_APP_DASHBOARD_URL || "https://zerodha-clone-web-app-sklx.vercel.app";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -23,7 +24,8 @@ const SignIn = () => {
         return;
       }
 
-      console.log("🔐 Logging in with:", { email });
+      console.log("🔐 Logging in with API:", API);
+      console.log("🔄 Will redirect to:", DASHBOARD_URL);
       
       const response = await axios.post(
         `${API}/api/auth/login`,
@@ -41,7 +43,7 @@ const SignIn = () => {
         }, 500);
       }
     } catch (error) {
-      console.error(" SignIn error:", error);
+      console.error("❌ SignIn error:", error);
       setMessage(error.response?.data?.message || "Log In failed!");
     } finally {
       setLoggingIn(false);

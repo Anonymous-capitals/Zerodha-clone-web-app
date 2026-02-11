@@ -2,7 +2,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
-const API = process.env.REACT_APP_API_BASE_URL;
+// ✅ HARDCODED fallbacks for when env variables aren't available
+const API = process.env.REACT_APP_API_BASE_URL || "https://zerodha-clone-web-app-backend.onrender.com";
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -11,7 +12,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const verifyAuth = async () => {
       try {
-        // ✅ FIXED: Get token from localStorage and send as Bearer token
         const token = localStorage.getItem("token");
 
         if (!token) {
@@ -20,17 +20,20 @@ export const AuthProvider = ({ children }) => {
           return;
         }
 
+        console.log("🔐 Frontend: Verifying token with API:", API);
+
         const response = await axios.get(`${API}/api/auth/verify`, {
           headers: {
-            Authorization: `Bearer ${token}`, // ✅ Send token in header
+            Authorization: `Bearer ${token}`,
           },
         });
 
+        console.log("✅ Frontend: Auth verification successful");
         setIsAuthenticated(response.data.authenticated);
       } catch (error) {
-        console.error("Auth verification failed:", error);
+        console.error("❌ Frontend: Auth verification failed:", error);
         setIsAuthenticated(false);
-        localStorage.removeItem("token"); // Clear invalid token
+        localStorage.removeItem("token");
       } finally {
         setLoading(false);
       }
