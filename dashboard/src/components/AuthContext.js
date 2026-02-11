@@ -1,9 +1,11 @@
-// dashboard/src/components/AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
-const API = process.env.REACT_APP_API_BASE_URL;
+// ✅ CRITICAL FIX: Add fallback for API URL
+const API = process.env.REACT_APP_API_BASE_URL || "https://zerodha-clone-web-app-backend.onrender.com";
 const FRONTEND_URL = process.env.REACT_APP_FRONTEND_URL || "https://zerodha-clone-web-app.vercel.app";
+
+console.log("🔧 Dashboard Config:", { API, FRONTEND_URL });
 
 const AuthContext = createContext();
 
@@ -16,38 +18,42 @@ export const AuthProvider = ({ children }) => {
     try {
       const token = localStorage.getItem("token");
 
-      console.log("🔍 Verifying token...", token ? `Token found (${token.substring(0, 10)}...)` : "No token");
+      console.log(" Dashboard: Verifying token...", token ? "Token found" : "No token");
 
       if (!token) {
-        console.warn("⚠️ No token found in localStorage");
+        console.warn(" Dashboard: No token in localStorage");
         setUser(null);
         setLoading(false);
         return;
       }
 
-      console.log("📡 Sending verification request to:", `${API}/api/auth/verify`);
+      const verifyUrl = `${API}/api/auth/verify`;
+      console.log(" Dashboard: Sending request to:", verifyUrl);
+      console.log(" Dashboard: With token:", token.substring(0, 20) + "...");
 
-      const res = await axios.get(`${API}/api/auth/verify`, {
+      const res = await axios.get(verifyUrl, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      console.log("✅ Verify response:", res.data);
+      console.log("Dashboard: Verification successful:", res.data);
 
       if (res.data.authenticated && res.data.user) {
-        console.log("✅ User authenticated:", res.data.user);
+        console.log(" Dashboard: User set:", res.data.user);
         setUser(res.data.user);
       } else {
-        console.warn("⚠️ Authentication failed - not authenticated");
+        console.warn(" Dashboard: Not authenticated from response");
         setUser(null);
         localStorage.removeItem("token");
       }
     } catch (err) {
-      console.error("❌ Verify failed:", {
+      console.error(" Dashboard: Verification error:", {
         message: err.message,
         status: err.response?.status,
+        statusText: err.response?.statusText,
         data: err.response?.data,
+        url: `${API}/api/auth/verify`,
       });
 
       setError(err.message);
@@ -59,11 +65,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    console.log(" Dashboard AuthProvider mounted");
     verifyUser();
   }, []);
 
   const logout = () => {
-    console.log("🚪 Logging out...");
+    console.log("Dashboard: User logging out...");
     localStorage.removeItem("token");
     setUser(null);
     window.location.href = FRONTEND_URL;
