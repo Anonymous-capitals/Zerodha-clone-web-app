@@ -4,24 +4,39 @@ import axios from "axios";
 const AuthContext = createContext();
 const API = process.env.REACT_APP_API_BASE_URL;
 
-
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`${API}/api/auth/verify`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setIsAuthenticated(res.data.authenticated);
-        setLoading(false);
-      })
-      .catch(() => {
+    const verifyAuth = async () => {
+      try {
+        // ✅ FIXED: Get token from localStorage and send as Bearer token
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+          setIsAuthenticated(false);
+          setLoading(false);
+          return;
+        }
+
+        const response = await axios.get(`${API}/api/auth/verify`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // ✅ Send token in header
+          },
+        });
+
+        setIsAuthenticated(response.data.authenticated);
+      } catch (error) {
+        console.error("Auth verification failed:", error);
         setIsAuthenticated(false);
+        localStorage.removeItem("token"); // Clear invalid token
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    verifyAuth();
   }, []);
 
   return (
