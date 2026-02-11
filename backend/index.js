@@ -13,40 +13,46 @@ const { OrdersModel } = require("./models/OrdersModel");
 const PORT = process.env.PORT || 5000;
 const uri = process.env.MONGO_URL;
 
+// ✅ FIXED: Hardcode your deployed URLs OR use env variables
 const allowedOrigins = [
+  "zerodha-clone-web-app.vercel.app",  // Frontend
+  "zerodha-clone-web-app-sklx.vercel.app", // Dashboard (if separate)
   process.env.CLIENT_URL,
   process.env.DASHBOARD_URL,
-].filter(Boolean); 
+].filter(Boolean);
 
 console.log("Allowed Origins:", allowedOrigins);
 
+// ✅ FIXED: CORS configuration
 app.use(
   cors({
     origin: function (origin, callback) {
-      console.log("Incoming Origin:", origin);
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) {
+        return callback(null, true);
+      }
 
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
         console.log("Blocked by CORS:", origin);
-        callback(new Error("Not allowed by CORS"));
+        callback(new Error("CORS policy violation"));
       }
     },
-    credentials: true, // ✅ FIXED: Changed from false to true
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
-app.options("*", (req, res) => {
-  res.sendStatus(200);
-});
+// ✅ Handle preflight requests
+app.options("*", cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// ✅ FIXED: Added error handling for API endpoints
+// ✅ API Routes with proper error handling
 app.get("/allHoldings", async (req, res) => {
   try {
     const holdings = await HoldingsModel.find({});
@@ -79,9 +85,8 @@ app.get("/allOrders", async (req, res) => {
 
 app.post("/newOrder", async (req, res) => {
   try {
-    // ✅ FIXED: Added validation
     const { name, qty, price, mode } = req.body;
-    
+
     if (!name || !qty || !price || !mode) {
       return res.status(400).json({ error: "Missing required fields" });
     }
@@ -97,7 +102,12 @@ app.post("/newOrder", async (req, res) => {
 
 app.use("/api/auth", require("./Routes/AuthRoute"));
 
-// ✅ FIXED: Better error handling for database connection
+// ✅ Health check endpoint
+app.get("/health", (req, res) => {
+  res.json({ status: "OK" });
+});
+
+// ✅ Database connection
 mongoose
   .connect(uri)
   .then(() => {
@@ -108,5 +118,5 @@ mongoose
   })
   .catch((err) => {
     console.error("MongoDB connection error:", err);
-    process.exit(1); // Exit if DB connection fails
+    process.exit(1);
   });
