@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const API = process.env.REACT_APP_API_BASE_URL;
-const DASHBOARD_URL = process.env.REACT_APP_DASHBOARD_URL;
+const DASHBOARD_URL = process.env.REACT_APP_DASHBOARD_URL || "https://zerodha-clone-dashboard.vercel.app"; // ✅ Fallback
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -18,22 +18,30 @@ const SignIn = () => {
     setMessage("");
 
     try {
-      
       if (!email || !password) {
         setMessage("Please enter email and password");
         return;
       }
 
+      console.log("🔐 Logging in with:", { email });
+      
       const response = await axios.post(
         `${API}/api/auth/login`,
         { email, password }
       );
 
       if (response.status === 200 && response.data.token) {
+        console.log("✅ Login successful, saving token...");
         localStorage.setItem("token", response.data.token);
-        window.location.href = DASHBOARD_URL;   }
+        
+        console.log("🔄 Redirecting to dashboard:", DASHBOARD_URL);
+        // ✅ Use setTimeout to ensure token is saved before redirect
+        setTimeout(() => {
+          window.location.href = DASHBOARD_URL;
+        }, 500);
+      }
     } catch (error) {
-      console.error("SignIn error:", error);
+      console.error(" SignIn error:", error);
       setMessage(error.response?.data?.message || "Log In failed!");
     } finally {
       setLoggingIn(false);
