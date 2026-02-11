@@ -1,6 +1,3 @@
-const jwt = require("jsonwebtoken");
-const UserModel = require("../models/UserModel");
-
 module.exports.userVerification = async (req, res) => {
   try {
     const authHeader = req.headers.authorization;
@@ -13,6 +10,14 @@ module.exports.userVerification = async (req, res) => {
     }
 
     const token = authHeader.split(" ")[1];
+
+    if (!token || token === "null" || token === "undefined") {
+      return res.status(401).json({
+        authenticated: false,
+        message: "Invalid token",
+      });
+    }
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     const user = await UserModel.findById(decoded.id).select("-password");
@@ -32,10 +37,12 @@ module.exports.userVerification = async (req, res) => {
         email: user.email,
       },
     });
+
   } catch (error) {
+    console.error("VERIFY ERROR:", error.message);
     return res.status(401).json({
       authenticated: false,
-      message: "Invalid token",
+      message: "Invalid or expired token",
     });
   }
 };

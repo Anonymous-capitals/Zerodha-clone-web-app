@@ -10,34 +10,36 @@ const { HoldingsModel } = require("./models/HoldingsModel");
 const { PositionsModel } = require("./models/PositionsModel");
 const { OrdersModel } = require("./models/OrdersModel");
 
-const FRONTEND_URL = process.env.CLIENT_URL;
-const DASHBOARD_URL = process.env.DASHBOARD_URL;
-
 const PORT = process.env.PORT || 5000;
 const uri = process.env.MONGO_URL;
 
 const allowedOrigins = [
-  FRONTEND_URL,
-  DASHBOARD_URL,
-];
+  process.env.CLIENT_URL,
+  process.env.DASHBOARD_URL,
+].filter(Boolean); 
 
-// ✅ CORRECT CORS (single source of truth)
+console.log("Allowed Origins:", allowedOrigins);
+
 app.use(
   cors({
     origin: function (origin, callback) {
+      console.log("Incoming Origin:", origin);
+
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
+        console.log("Blocked by CORS:", origin);
         callback(new Error("Not allowed by CORS"));
       }
     },
-    credentials: true,
+    credentials: false, 
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
-// ❌ REMOVE app.options("*", cors());
+
+
 app.options("*", (req, res) => {
   res.sendStatus(200);
 });
