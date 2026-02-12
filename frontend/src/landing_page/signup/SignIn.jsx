@@ -33,14 +33,13 @@ const SignIn = () => {
       );
 
       if (response.status === 200 && response.data.token) {
-        console.log("✅ Login successful, saving token...");
-        localStorage.setItem("token", response.data.token);
+        console.log("✅ Login successful, passing token to dashboard...");
+        const token = response.data.token;
         
         console.log("🔄 Redirecting to dashboard:", DASHBOARD_URL);
-        // ✅ Use setTimeout to ensure token is saved before redirect
-        setTimeout(() => {
-          window.location.href = DASHBOARD_URL;
-        }, 500);
+        // ✅ Pass token as URL parameter so dashboard can access it
+        const dashboardUrlWithToken = `${DASHBOARD_URL}?token=${encodeURIComponent(token)}`;
+        window.location.href = dashboardUrlWithToken;
       }
     } catch (error) {
       console.error("❌ SignIn error:", error);

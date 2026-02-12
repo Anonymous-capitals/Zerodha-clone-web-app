@@ -16,12 +16,22 @@ export const AuthProvider = ({ children }) => {
 
   const verifyUser = async () => {
     try {
-      const token = localStorage.getItem("token");
+      // ✅ Check URL parameters first (from login redirect), then localStorage
+      const urlParams = new URLSearchParams(window.location.search);
+      let token = urlParams.get("token") || localStorage.getItem("token");
 
-      console.log("🔐 Dashboard: Checking localStorage for token...");
+      // ✅ If token from URL, save it to localStorage for persistence
+      if (urlParams.get("token") && !localStorage.getItem("token")) {
+        localStorage.setItem("token", token);
+        console.log("✅ Dashboard: Token received from URL and saved to localStorage");
+        // Remove token from URL for cleaner history
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+
+      console.log("🔐 Dashboard: Checking for token...");
 
       if (!token) {
-        console.warn("⚠️ Dashboard: No token found in localStorage");
+        console.warn("⚠️ Dashboard: No token found in localStorage or URL");
         setUser(null);
         setLoading(false);
         setError("No authentication token found");
