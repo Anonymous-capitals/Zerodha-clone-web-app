@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
-// ✅ HARDCODED fallbacks for when env variables aren't available
 const API = process.env.REACT_APP_API_BASE_URL || "https://zerodha-clone-web-app-backend.onrender.com";
 
 export const AuthProvider = ({ children }) => {
@@ -20,7 +19,7 @@ export const AuthProvider = ({ children }) => {
           return;
         }
 
-        console.log("🔐 Frontend: Verifying token with API:", API);
+
 
         const response = await axios.get(`${API}/api/auth/verify`, {
           headers: {
@@ -28,10 +27,10 @@ export const AuthProvider = ({ children }) => {
           },
         });
 
-        console.log("✅ Frontend: Auth verification successful");
+
         setIsAuthenticated(response.data.authenticated);
       } catch (error) {
-        console.error("❌ Frontend: Auth verification failed:", error);
+        console.error("Frontend: Auth verification failed:", error);
         setIsAuthenticated(false);
         localStorage.removeItem("token");
       } finally {

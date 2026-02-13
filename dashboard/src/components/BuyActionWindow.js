@@ -4,15 +4,15 @@ import axios from "axios";
 import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
 
-const API = process.env.REACT_APP_API_BASE_URL; // ✅ FIXED: Use env variable
+const API = process.env.REACT_APP_API_BASE_URL;
 
 const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
-  const [loading, setLoading] = useState(false); // ✅ FIXED: Added loading state
+  const [loading, setLoading] = useState(false);
   const { closeBuyWindow } = useContext(GeneralContext);
 
-  const handleBuyClick = async () => { // ✅ FIXED: Made async with error handling
+  const handleBuyClick = async () => {
     setLoading(true);
     try {
       if (!stockQuantity || !stockPrice) {
@@ -20,7 +20,7 @@ const BuyActionWindow = ({ uid }) => {
         return;
       }
 
-      await axios.post(`${API}/newOrder`, { // ✅ FIXED: Use API env variable
+      await axios.post(`${API}/newOrder`, {
         name: uid,
         qty: Number(stockQuantity),
         price: Number(stockPrice),

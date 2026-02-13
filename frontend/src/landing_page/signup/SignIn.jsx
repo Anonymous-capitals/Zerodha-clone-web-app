@@ -2,9 +2,19 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-// ✅ HARDCODED URLs for reliability (environment variables may not be available)
 const API = process.env.REACT_APP_API_BASE_URL || "https://zerodha-clone-web-app-backend.onrender.com";
-const DASHBOARD_URL = process.env.REACT_APP_DASHBOARD_URL || "https://zerodha-clone-web-app-sklx.vercel.app";
+
+const getDashboardURL = () => {
+  const url = process.env.REACT_APP_DASHBOARD_URL || "";
+  if (!url) {
+    console.error("REACT_APP_DASHBOARD_URL is not set in .env file!");
+    return null;
+  }
+  // Remove trailing slash if present
+  return url.endsWith("/") ? url.slice(0, -1) : url;
+};
+
+const DASHBOARD_URL = getDashboardURL();
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -24,8 +34,7 @@ const SignIn = () => {
         return;
       }
 
-      console.log("🔐 Logging in with API:", API);
-      console.log("🔄 Will redirect to:", DASHBOARD_URL);
+
       
       const response = await axios.post(
         `${API}/api/auth/login`,
@@ -33,16 +42,23 @@ const SignIn = () => {
       );
 
       if (response.status === 200 && response.data.token) {
-        console.log("✅ Login successful, passing token to dashboard...");
+        if (!DASHBOARD_URL) {
+          setMessage(
+            "Configuration Error: Dashboard URL is not set. Please contact support. Check browser console for details."
+          );
+          console.error(
+            "Cannot redirect - DASHBOARD_URL from environment is missing",
+            { env: process.env.REACT_APP_DASHBOARD_URL }
+          );
+          return;
+        }
+
         const token = response.data.token;
-        
-        console.log("🔄 Redirecting to dashboard:", DASHBOARD_URL);
-        // ✅ Pass token as URL parameter so dashboard can access it
         const dashboardUrlWithToken = `${DASHBOARD_URL}?token=${encodeURIComponent(token)}`;
         window.location.href = dashboardUrlWithToken;
       }
     } catch (error) {
-      console.error("❌ SignIn error:", error);
+      console.error("SignIn error:", error);
       setMessage(error.response?.data?.message || "Log In failed!");
     } finally {
       setLoggingIn(false);

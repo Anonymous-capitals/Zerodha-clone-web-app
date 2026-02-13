@@ -3,10 +3,6 @@ import { useAuth } from "./AuthContext";
 
 const ProtectedRoute = () => {
   const { user, loading, error } = useAuth();
-
-  console.log("🛡️ ProtectedRoute check:", { user, loading, error });
-
-  // ✅ Show loading state while verifying
   if (loading) {
     return (
       <div style={{
@@ -26,16 +22,13 @@ const ProtectedRoute = () => {
     );
   }
 
-  // ✅ If NO user after loading, redirect
   if (!user) {
-    console.warn("🛡️ ProtectedRoute: No user authenticated, redirecting to frontend...");
-    const frontendUrl = "https://zerodha-clone-web-app.vercel.app";
+    const frontendUrl = process.env.REACT_APP_URL || "https://zerodha-clone-web-app-ranit-gopes-projects.vercel.app";
     // Use replace to prevent back button issues
     window.location.replace(frontendUrl);
     return null;
   }
 
-  console.log("✅ ProtectedRoute: User authenticated as:", user.email);
   return <Outlet />;
 };
 

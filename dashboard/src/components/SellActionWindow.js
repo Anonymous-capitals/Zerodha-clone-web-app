@@ -9,10 +9,10 @@ const API = process.env.REACT_APP_API_BASE_URL;
 const SellActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
-  const [loading, setLoading] = useState(false); // ✅ FIXED: Added loading state
+  const [loading, setLoading] = useState(false);
   const { closeSellWindow } = useContext(GeneralContext);
 
-  const handleSellClick = async () => { // ✅ FIXED: Made async with error handling
+  const handleSellClick = async () => {
     setLoading(true);
     try {
       if (!stockQuantity || !stockPrice) {
