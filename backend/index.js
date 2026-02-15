@@ -21,6 +21,8 @@ const allowedOrigins = [
   "https://zerodha-clone-web-app.vercel.app",
   "https://zerodha-clone-web-app-sklx.vercel.app",
   "https://zerodha-clone-dashboard.vercel.app",
+  // Current deployment
+  "https://zerodha-clone-web-app-ranit-gopes-projects.vercel.app",
   // Actual deployed frontend and dashboard from environment variables
   process.env.CLIENT_URL,
   process.env.DASHBOARD_URL,
