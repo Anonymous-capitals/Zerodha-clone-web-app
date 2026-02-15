@@ -40,15 +40,21 @@ const Profile = () => {
   };
 
   return (
-    <div style={{ padding: "40px", maxWidth: 800, margin: "0 auto" }}>
-      <h2 style={{ marginBottom: 20 }}>Account Profile</h2>
+    <div style={{ 
+      padding: "clamp(20px, 5vw, 40px)", 
+      maxWidth: "100%", 
+      margin: "0 auto",
+      width: "100%"
+    }}>
+      <h2 style={{ marginBottom: "clamp(15px, 3vw, 20px)" }}>Account Profile</h2>
 
       <div
         style={{
           background: "#fff",
-          padding: 24,
+          padding: "clamp(15px, 4vw, 24px)",
           borderRadius: 12,
           boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
+          overflow: "auto"
         }}
       >
         <p><strong>Username</strong><br />{user?.username || "—"}</p>

@@ -66,27 +66,27 @@ const SignIn = () => {
   };
 
   return (
-    <div className="container text-center p-5">
+    <div className="container text-center p-md-5 p-3">
       <div className="row">
-        <h1 style={{ fontSize: "3rem", opacity: "0.85", marginTop: "5rem" }}>
+        <h1 style={{ fontSize: "clamp(1.8rem, 6vw, 3rem)", opacity: "0.85", marginTop: "clamp(2rem, 8vw, 5rem)" }}>
           Open a free demat and trading account
         </h1>
-        <h3 style={{ opacity: "0.85", fontSize: "1.3rem", marginBottom: "2.5rem" }}>
+        <h3 style={{ opacity: "0.85", fontSize: "clamp(1rem, 4vw, 1.3rem)", marginBottom: "clamp(1.5rem, 5vw, 2.5rem)" }}>
           Start investing brokerage free and join a community of 1+ crore investors and traders
         </h3>
       </div>
 
-      <div className="row p-5">
-        <div className="col-6 p-5">
+      <div className="row p-md-5 p-3">
+        <div className="col-md-6 col-12 p-md-5 p-3">
           <img
-            style={{ height: "47vh", width: "35vw", margin: "0 auto" }}
+            style={{ height: "auto", width: "100%", maxWidth: "400px", margin: "0 auto" }}
             src="media/images/account_open.png"
             alt="account"
           />
         </div>
 
-        <div className="col-6">
-          <h2 className="p-3 mt-5" style={{ opacity: "0.88", fontSize: "1.9rem" }}>
+        <div className="col-md-6 col-12">
+          <h2 className="p-3 mt-md-5 mt-3" style={{ opacity: "0.88", fontSize: "clamp(1.5rem, 5vw, 1.9rem)" }}>
             Log-In
           </h2>
 
@@ -94,7 +94,7 @@ const SignIn = () => {
             to="/signup"
             onMouseEnter={() => setCursorStyle("pointer")}
             onMouseLeave={() => setCursorStyle("default")}
-            style={{ opacity: "0.85", fontSize: "1.2rem", cursor: cursorStyle }}
+            style={{ opacity: "0.85", fontSize: "clamp(1rem, 3vw, 1.2rem)", cursor: cursorStyle }}
           >
             Don't have an account? <span style={{ color: "blue" }}>Sign Up ...</span>
           </Link>
@@ -102,33 +102,34 @@ const SignIn = () => {
           <form
             onSubmit={handleSignIn}
             style={{
-              marginTop: "3rem",
+              marginTop: "clamp(1.5rem, 5vw, 3rem)",
               display: "flex",
               flexDirection: "column",
-              width: "17rem",
-              margin: "3rem auto",
+              width: "clamp(200px, 90%, 17rem)",
+              margin: "clamp(1.5rem, 5vw, 3rem) auto",
+              gap: "clamp(0.8rem, 2vw, 1.2rem)",
             }}
           >
             <input
               type="email"
-              placeholder="Email"
+              placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <button type="submit" disabled={loggingIn} style={{ marginTop: "1rem" }}>
+            <button type="submit" disabled={loggingIn}>
               {loggingIn ? "Logging in..." : "Log In"}
             </button>
           </form>
 
-          {message && <p style={{ color: "red", marginTop: "1rem" }}>{message}</p>}
+          {message && <p style={{ color: "red", marginTop: "clamp(0.75rem, 2vw, 1rem)" }}>{message}</p>}
         </div>
       </div>
     </div>

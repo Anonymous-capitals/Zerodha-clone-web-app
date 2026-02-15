@@ -11,36 +11,47 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+* {
+  box-sizing: border-box;
+}
+
 .HomeTextBlocks{
   opacity: 0.9;
-  
 }
+
 .HomeTextBlocks h3{
   opacity: 0.9;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
   margin-bottom: 1rem;
 }
+
 .HomeTextBlocks p{
   opacity: 0.9;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   margin-bottom: 2rem;
 }
+
 a{
   text-decoration: none;
 }
+
 .nav-link{
-  margin-left: 40px;
+  margin-left: clamp(15px, 5vw, 40px);
 }
+
 .footer a{
   color: black;
   opacity: 0.9;
   display: block; 
   margin-bottom: 0.3rem;
 }
+
 .footer p{
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 3vw, 1.3rem);
   font-weight: 500;
 }
+
 .foootersLastPart a{
   color: black;
   opacity: 0.8;
@@ -48,53 +59,66 @@ a{
   display: inline;
   margin-left: 1rem;
 }
+
 .foootersLastPart{
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   margin-bottom: 1.5rem;
+  gap: 10px;
+}
 
-}
 .Universe img{
-  width: 15vw;
+  width: clamp(100px, 30vw, 15vw);
   margin-bottom: 3rem;
+  height: auto;
 }
+
 .Universe p{
   opacity: 0.7;
-  font-size: 0.8rem;
-  margin-top: 0%;
+  font-size: clamp(0.7rem, 2.5vw, 0.8rem);
+  margin-top: 0;
   text-align: center;
 }
+
 .Universe{
-  padding: 0 12rem;
+  padding: clamp(1rem, 5vw, 12rem);
   margin-bottom: 5rem;
 }
+
 .Pricing div{
-  padding: 5rem;
+  padding: clamp(1.5rem, 5vw, 5rem);
   opacity: 0.85;
   text-align: center;
 }
+
 .Pricing h3{
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
 }
+
 .Brokerage h1{
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
   text-align: center;
   font-weight: 400;
   opacity: 0.85;
   margin-bottom: 3rem;
 }
+
 .Brokerage{
-  padding: 4rem;
+  padding: clamp(1.5rem, 5vw, 4rem);
 }
+
 .Brokerage h5{
-  font-size: 1.05rem;
+  font-size: clamp(1rem, 3vw, 1.05rem);
   margin-bottom: 2rem;
   opacity: 0.9;
   font-weight: 400;
 }
+
 .Brokerage p,ul{
-  font-size: small;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
 }
+
 .Support a{
   color: white;
   margin-top: 1rem;
@@ -116,4 +140,293 @@ a{
 }
 .Ticket{
   margin-left:10rem ;
+}
+
+/* ========== AUTH FORM STYLING ========== */
+
+/* Form Input Styling */
+form input {
+  padding: clamp(0.75rem, 2vw, 1rem);
+  margin-bottom: clamp(1rem, 2vw, 1.2rem);
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+form input::placeholder {
+  color: #999;
+}
+
+/* Modern Login/Signup Button */
+form button {
+  padding: clamp(0.9rem, 2.5vw, 1.1rem) clamp(1.5rem, 5vw, 2rem);
+  margin-top: clamp(0.75rem, 2vw, 1rem);
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  font-family: inherit;
+  text-transform: uppercase;
+}
+
+form button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+  transform: translateY(-2px);
+}
+
+form button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+form button:disabled:hover {
+  transform: none;
+}
+
+/* Success/Error Messages */
+form + p {
+  font-weight: 500;
+  margin-top: clamp(1rem, 2vw, 1.5rem) !important;
+  padding: clamp(0.75rem, 2vw, 1rem);
+  border-radius: 6px;
+  animation: slideDown 0.3s ease;
+}
+
+form + p[style*="green"] {
+  background-color: #d1fae5;
+  color: #065f46;
+  border-left: 4px solid #10b981;
+}
+
+form + p[style*="red"] {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border-left: 4px solid #ef4444;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Mobile: 320px - 640px */
+@media screen and (max-width: 640px) {
+  .nav-link {
+    margin-left: 10px;
+  }
+
+  .foootersLastPart {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .foootersLastPart a {
+    display: block;
+    margin-left: 0;
+    margin-bottom: 8px;
+  }
+
+  .Universe {
+    padding: 1rem;
+  }
+
+  .Pricing div {
+    padding: 1.5rem;
+  }
+
+  .Brokerage {
+    padding: 1.5rem;
+  }
+
+  .Ticket {
+    margin-left: 1rem;
+  }
+
+  .Ticket h3 {
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+  }
+
+  .Support a {
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .container {
+    padding: 1rem !important;
+  }
+
+  .row {
+    margin-left: -0.5rem !important;
+    margin-right: -0.5rem !important;
+  }
+
+  .col-6 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    padding: 0.5rem !important;
+  }
+
+  .col-12 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem) !important;
+  }
+
+  h2 {
+    font-size: clamp(1.3rem, 4vw, 2rem) !important;
+  }
+
+  h3 {
+    font-size: clamp(1.1rem, 3.5vw, 1.5rem) !important;
+  }
+
+  p {
+    font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Tablet: 641px - 1024px */
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+  .nav-link {
+    margin-left: 20px;
+  }
+
+  .Universe {
+    padding: 0 4rem;
+  }
+
+  .Pricing div {
+    padding: 3rem;
+  }
+
+  .Brokerage {
+    padding: 2.5rem;
+  }
+
+  .Ticket {
+    margin-left: 3rem;
+  }
+
+  .col-6 {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem) !important;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 4vw, 2.2rem) !important;
+  }
+
+  h3 {
+    font-size: clamp(1.2rem, 3.5vw, 1.8rem) !important;
+  }
+
+  .container {
+    padding: 1.5rem !important;
+  }
+}
+
+/* Desktop: 1025px and up */
+@media screen and (min-width: 1025px) {
+  .nav-link {
+    margin-left: 40px;
+  }
+
+  .Universe {
+    padding: 0 12rem;
+  }
+
+  .Pricing div {
+    padding: 5rem;
+  }
+
+  .Brokerage {
+    padding: 4rem;
+  }
+
+  .Ticket {
+    margin-left: 10rem;
+  }
+
+  .col-6 {
+    flex: 0 0 50% !important;
+  }
+
+  .col-12 {
+    flex: 0 0 100% !important;
+  }
+}
+
+/* Extra small devices (below 320px) */
+@media screen and (max-width: 319px) {
+  .nav-link {
+    margin-left: 5px;
+  }
+
+  .Universe {
+    padding: 0.5rem;
+  }
+
+  .Brokerage {
+    padding: 1rem;
+  }
+
+  .Ticket {
+    margin-left: 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.3rem !important;
+  }
+
+  h2 {
+    font-size: 1.1rem !important;
+  }
+
+  p {
+    font-size: 0.85rem !important;
+  }
 }

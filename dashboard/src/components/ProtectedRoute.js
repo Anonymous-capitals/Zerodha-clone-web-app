@@ -6,7 +6,7 @@ const ProtectedRoute = () => {
   if (loading) {
     return (
       <div style={{
-        padding: "40px",
+        padding: "clamp(20px, 5vw, 40px)",
         textAlign: "center",
         minHeight: "100vh",
         display: "flex",

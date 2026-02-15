@@ -14,17 +14,20 @@ const ProfileModal = ({ onClose }) => {
         alignItems: "center",
         justifyContent: "center",
         zIndex: 2000,
+        padding: "10px",
       }}
     >
       <div
         style={{
           background: "#fff",
-          width: 400,
+          width: "clamp(300px, 90vw, 400px)",
           borderRadius: 8,
-          padding: 20,
+          padding: "clamp(15px, 4vw, 20px)",
+          maxHeight: "90vh",
+          overflowY: "auto",
         }}
       >
-        <h2 style={{ marginBottom: 10 }}>Profile</h2>
+        <h2 style={{ marginBottom: "clamp(8px, 2vw, 10px)" }}>Profile</h2>
 
         <p><strong>Username:</strong> {user.username}</p>
         <p><strong>Email:</strong> {user.email}</p>
@@ -35,7 +38,7 @@ const ProfileModal = ({ onClose }) => {
 
         <p><strong>Total Holdings:</strong> —</p>
 
-        <div style={{ marginTop: 20, display: "flex", gap: 10 }}>
+        <div style={{ marginTop: "clamp(15px, 4vw, 20px)", display: "flex", gap: "clamp(8px, 2vw, 10px)", flexWrap: "wrap" }}>
           <button onClick={onClose}>Close</button>
           <button
             onClick={logout}
