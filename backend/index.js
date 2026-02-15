@@ -72,6 +72,17 @@ app.get("/allHoldings", async (req, res) => {
   }
 });
 
+app.get("/userHoldings/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const holdings = await HoldingsModel.find({ userId });
+    res.status(200).json(holdings || []);
+  } catch (error) {
+    console.error("Error fetching user holdings:", error);
+    res.status(500).json({ error: "Failed to fetch user holdings" });
+  }
+});
+
 app.get("/allPositions", async (req, res) => {
   try {
     const positions = await PositionsModel.find({});

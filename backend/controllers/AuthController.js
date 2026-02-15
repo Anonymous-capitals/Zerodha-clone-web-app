@@ -52,6 +52,7 @@ module.exports.Signup = async (req, res) => {
         id: user._id,
         username: user.username,
         email: user.email,
+        createdAt: user.createdAt,
       },
     });
   } catch (error) {
@@ -100,6 +101,7 @@ module.exports.Login = async (req, res) => {
         id: user._id,
         username: user.username,
         email: user.email,
+        createdAt: user.createdAt,
       },
     });
   } catch (error) {
