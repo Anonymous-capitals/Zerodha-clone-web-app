@@ -34,7 +34,8 @@ function Awards() {
               alt="Leading Simulator" 
               className="award-image"
               style={{
-                maxWidth: "300px", 
+                maxWidth: "500px", 
+                width: "100%",
                 margin: "0 auto",
                 filter: "drop-shadow(0 8px 24px rgba(40, 167, 69, 0.15))"
               }}
