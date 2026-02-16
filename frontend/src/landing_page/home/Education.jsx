@@ -24,7 +24,7 @@ function Education() {
             <div className="mt-4 mt-lg-5">
               <img 
                 className="education-img" 
-                src="media/images/learning_resources.svg"
+                src="media/images/learning_resources.png"
                 alt="Learning Resources"
                 style={{
                   maxWidth: "80%",
