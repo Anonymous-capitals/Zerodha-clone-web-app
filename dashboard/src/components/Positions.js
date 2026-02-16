@@ -1,6 +1,5 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-const API = process.env.REACT_APP_API_BASE_URL;
+import api from "../api/axiosConfig";
 
 const Positions = () => {
   const [positions, setPositions] = useState([]);
@@ -9,7 +8,7 @@ const Positions = () => {
   useEffect(() => {
     const fetchPositions = async () => {
       try {
-        const res = await axios.get(`${API}/allPositions`);
+        const res = await api.get("/userPositions");
         setPositions(res.data || []);
       } catch (err) {
         console.error("Failed to load positions", err);

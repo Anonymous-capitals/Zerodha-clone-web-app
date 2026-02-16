@@ -1,8 +1,6 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-const API = process.env.REACT_APP_API_BASE_URL;
+import api from "../api/axiosConfig";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -12,14 +10,11 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get(`${API}/allOrders`, {
-          withCredentials: true,
-        });
-
+        const res = await api.get("/userOrders");
         setOrders(res.data || []);
       } catch (err) {
         console.error("Orders fetch error:", err);
-        setError("Failed to load orders");
+        setError(err.response?.status === 401 ? "Please log in again" : "Failed to load orders");
       } finally {
         setLoading(false);
       }

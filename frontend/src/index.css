@@ -37,6 +37,60 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ========== Desktop: constrain width and improve readability ========== */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+
+  body {
+    font-size: 1.05rem;
+  }
+
+  .hero-title {
+    font-size: 3rem !important;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+  }
+
+  .HomeTextBlocks h3 {
+    font-size: 1.5rem;
+  }
+
+  .HomeTextBlocks p {
+    font-size: 1rem;
+  }
+
+  .stats-title,
+  .education-title,
+  .about-hero-title {
+    font-size: 2.25rem !important;
+  }
+
+  .open-account-title {
+    font-size: 2.5rem !important;
+  }
+
+  .products-hero-title,
+  .pricing-hero-title {
+    font-size: 2.7rem !important;
+  }
+
+  .universe-title {
+    font-size: 2.5rem !important;
+  }
+}
+
 /* Hero & CTA buttons: responsive, touch-friendly */
 .hero-image {
   height: auto;

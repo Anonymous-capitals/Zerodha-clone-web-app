@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const { HoldingsModel } = require("./models/HoldingsModel");
 const { PositionsModel } = require("./models/PositionsModel");
 const { OrdersModel } = require("./models/OrdersModel");
+const { requireAuth } = require("./Middlewares/AuthMiddleWare");
 
 const PORT = process.env.PORT || 5000;
 const uri = process.env.MONGO_URL;
@@ -62,20 +63,11 @@ app.get("/health", (req, res) => {
   res.status(200).json({ status: "OK", timestamp: new Date().toISOString() });
 });
 
-app.get("/allHoldings", async (req, res) => {
-  try {
-    const holdings = await HoldingsModel.find({});
-    res.status(200).json(holdings);
-  } catch (error) {
-    console.error("Error fetching holdings:", error);
-    res.status(500).json({ error: "Failed to fetch holdings" });
-  }
-});
+/* ========== User-scoped data (require auth; stored per user in MongoDB Atlas) ========== */
 
-app.get("/userHoldings/:userId", async (req, res) => {
+app.get("/userHoldings", requireAuth, async (req, res) => {
   try {
-    const { userId } = req.params;
-    const holdings = await HoldingsModel.find({ userId });
+    const holdings = await HoldingsModel.find({ userId: req.userId });
     res.status(200).json(holdings || []);
   } catch (error) {
     console.error("Error fetching user holdings:", error);
@@ -83,35 +75,41 @@ app.get("/userHoldings/:userId", async (req, res) => {
   }
 });
 
-app.get("/allPositions", async (req, res) => {
+app.get("/userPositions", requireAuth, async (req, res) => {
   try {
-    const positions = await PositionsModel.find({});
-    res.status(200).json(positions);
+    const positions = await PositionsModel.find({ userId: req.userId });
+    res.status(200).json(positions || []);
   } catch (error) {
-    console.error("Error fetching positions:", error);
-    res.status(500).json({ error: "Failed to fetch positions" });
+    console.error("Error fetching user positions:", error);
+    res.status(500).json({ error: "Failed to fetch user positions" });
   }
 });
 
-app.get("/allOrders", async (req, res) => {
+app.get("/userOrders", requireAuth, async (req, res) => {
   try {
-    const orders = await OrdersModel.find({});
-    res.status(200).json(orders);
+    const orders = await OrdersModel.find({ userId: req.userId }).sort({ createdAt: -1 });
+    res.status(200).json(orders || []);
   } catch (error) {
-    console.error("Error fetching orders:", error);
-    res.status(500).json({ error: "Failed to fetch orders" });
+    console.error("Error fetching user orders:", error);
+    res.status(500).json({ error: "Failed to fetch user orders" });
   }
 });
 
-app.post("/newOrder", async (req, res) => {
+app.post("/newOrder", requireAuth, async (req, res) => {
   try {
     const { name, qty, price, mode } = req.body;
 
-    if (!name || !qty || !price || !mode) {
+    if (!name || qty == null || price == null || !mode) {
       return res.status(400).json({ error: "Missing required fields: name, qty, price, mode" });
     }
 
-    const order = new OrdersModel(req.body);
+    const order = new OrdersModel({
+      userId: req.userId,
+      name,
+      qty: Number(qty),
+      price: Number(price),
+      mode: String(mode),
+    });
     await order.save();
     res.status(201).json({ message: "Order saved successfully!", order });
   } catch (error) {

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { VerticalGraph } from "./VerticalGraph";
-
-const API = process.env.REACT_APP_API_BASE_URL;
+import api from "../api/axiosConfig";
 
 const Holdings = () => {
   const [holdings, setHoldings] = useState([]);
@@ -11,11 +9,7 @@ const Holdings = () => {
   useEffect(() => {
     const fetchHoldings = async () => {
       try {
-        const res = await axios.get(`${API}/allHoldings`, 
-        // {
-        //   withCredentials: true,
-        // }
-      );
+        const res = await api.get("/userHoldings");
         setHoldings(res.data || []);
       } catch (err) {
         console.error("Failed to load holdings", err);

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
-
-const API = process.env.REACT_APP_API_BASE_URL || "https://zerodha-clone-web-app-backend.onrender.com";
+import api from "../api/axiosConfig";
 
 const Profile = () => {
   const { user, logout } = useAuth();
@@ -20,7 +18,7 @@ const Profile = () => {
   const fetchUserHoldings = async () => {
     try {
       setLoadingHoldings(true);
-      const res = await axios.get(`${API}/userHoldings/${user.id}`);
+      const res = await api.get("/userHoldings");
       setHoldings(res.data || []);
     } catch (err) {
       console.error("Failed to load user holdings:", err);
