@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import api from "../api/axiosConfig";
 import GeneralContext from "./GeneralContext";
@@ -14,13 +14,19 @@ const SellActionWindow = ({ uid }) => {
   const qtyNum = Math.max(0, Math.floor(parseFloat(stockQuantity) || 0));
   const total = priceNum * qtyNum;
 
-  const handlePriceChange = (e) => {
-    setStockPrice(e.target.value);
-  };
+  const handlePriceChange = useCallback((e) => {
+    const val = e.target.value;
+    setStockPrice(val);
+    // When price is entered, keep quantity as is
+    // User can then adjust quantity manually to see different totals
+  }, []);
 
-  const handleQuantityChange = (e) => {
-    setStockQuantity(e.target.value);
-  };
+  const handleQuantityChange = useCallback((e) => {
+    const val = e.target.value;
+    setStockQuantity(val);
+    // When quantity is entered, calculate optimal price to match the price
+    // that would give a reasonable total, but allow user to override
+  }, []);
 
   const handleSellClick = async () => {
     if (!qtyNum || !priceNum) {

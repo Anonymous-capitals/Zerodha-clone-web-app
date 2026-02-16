@@ -27,7 +27,13 @@ const BuyActionWindow = ({ uid }) => {
   }, []);
 
   const handleQuantityChange = useCallback((e) => {
-    setStockQuantity(e.target.value);
+    const val = e.target.value;
+    setStockQuantity(val);
+    const q = parseFloat(val);
+    if (q > 0) {
+      const optimalPrice = (AVAILABLE_FUNDS / q).toFixed(2);
+      setStockPrice(optimalPrice);
+    }
   }, []);
 
   const handleBuyClick = async () => {
