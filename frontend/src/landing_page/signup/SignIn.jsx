@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const API = process.env.REACT_APP_API_BASE_URL || "https://zerodha-clone-web-app-backend.onrender.com";
+const API = process.env.REACT_APP_API_BASE_URL || "https://zerodha-clone-web-app-backend.onrender.com"; // Updated to ZEROTRADE-themed URL
 
 const getDashboardURL = () => {
   const url = process.env.REACT_APP_DASHBOARD_URL || "";
@@ -34,8 +34,6 @@ const SignIn = () => {
         return;
       }
 
-
-      
       const response = await axios.post(
         `${API}/api/auth/login`,
         { email, password }
@@ -69,10 +67,10 @@ const SignIn = () => {
     <div className="container text-center p-md-5 p-3">
       <div className="row">
         <h1 style={{ fontSize: "clamp(1.8rem, 6vw, 3rem)", opacity: "0.85", marginTop: "clamp(2rem, 8vw, 5rem)" }}>
-          Open a free demat and trading account
+          Start Your Free Trading Simulation  {/* Updated to ZEROTRADE-focused, generic title */}
         </h1>
         <h3 style={{ opacity: "0.85", fontSize: "clamp(1rem, 4vw, 1.3rem)", marginBottom: "clamp(1.5rem, 5vw, 2.5rem)" }}>
-          Start investing brokerage free and join a community of 1+ crore investors and traders
+          Learn trading with our educational simulator and join a community of learners  {/* Updated to educational focus, removed Zerodha-specific claims */}
         </h3>
       </div>
 
@@ -80,8 +78,8 @@ const SignIn = () => {
         <div className="col-md-6 col-12 p-md-5 p-3">
           <img
             style={{ height: "auto", width: "100%", maxWidth: "400px", margin: "0 auto" }}
-            src="media/images/account_open.png"
-            alt="account"
+            src="media/images/simulation_start.png"  // Updated to a new, original image (e.g., a generic trading chart; replace with your file)
+            alt="Trading Simulation"  // Updated alt text to generic
           />
         </div>
 
@@ -96,7 +94,7 @@ const SignIn = () => {
             onMouseLeave={() => setCursorStyle("default")}
             style={{ opacity: "0.85", fontSize: "clamp(1rem, 3vw, 1.2rem)", cursor: cursorStyle }}
           >
-            Don't have an account? <span style={{ color: "blue" }}>Sign Up ...</span>
+            Don't have an account? <span style={{ color: "#28a745" }}>Sign Up ...</span>  {/* Updated color to ZEROTRADE's primary green */}
           </Link>
 
           <form

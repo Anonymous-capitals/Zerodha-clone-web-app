@@ -5,153 +5,85 @@ function Brokerage() {
     <div className="container Brokerage">
       <div className="row">
         <h1 className="brokerage-heading">
-          <a href="/">Calculate your costs upfront</a> using our brokerage calculator
+          Understand Trading Costs with Our Simulator  {/* Updated to educational focus, removed calculator link */}
         </h1>
       </div>
       <div className="row Brokerage g-4">
-        <h3 className="text-muted mb-4 mb-md-5 col-12">Charges explained</h3>
+        <h3 className="text-muted mb-4 mb-md-5 col-12">General Trading Charges Explained</h3>  {/* Generalized title */}
         <div className="col-12 col-lg-6">
-          <h5>Securities/Commodities transaction tax</h5>
+          <h5>Securities/Commodities Transaction Tax</h5>
           <p>
-            Tax by the government when transacting on the exchanges. Charged as
-            above on both buy and sell sides when trading equity delivery.
-            Charged only on selling side when trading intraday or on F&O. <br />
-            When trading at Zerodha, STT/CTT can be a lot more than the
-            brokerage we charge. Important to keep a tab.
+            A government tax on transactions in the stock market. Typically charged on both buy and sell for delivery trades, and only on sell for intraday or derivatives. In real-world trading, this can vary by exchange and trade type.  {/* Generalized, removed Zerodha-specific references */}
           </p>
           <h5>Transaction/Turnover Charges</h5>
           <p>
-            Charged by exchanges (NSE, BSE, MCX) on the value of your
-            transactions.
-            <br />
-            BSE has revised transaction charges in XC, XD, XT, Z and ZP groups
-            to ₹10,000 per crore w.e.f 01.01.2016. (XC and XD groups have been
-            merged into a new group X w.e.f 01.12.2017)
-            <br />
-            BSE has revised transaction charges in SS and ST groups to ₹1,00,000
-            per crore of gross turnover.
-            <br />
-            BSE has revised transaction charges for group A, B and other non
-            exclusive scrips (non-exclusive scrips from group E, F, FC, G, GC,
-            W, T) at ₹375 per crore of turnover on flat rate basis w.e.f.
-            December 1, 2022.
-            <br />
-            BSE has revised transaction charges in M, MT, TS and MS groups to
-            ₹275 per crore of gross turnover.
+            Fees charged by stock exchanges based on trade value. These vary by exchange and group of securities. In real trading, rates are set by regulatory bodies and can change over time.  {/* Generalized, removed specific rates and Zerodha mentions */}
           </p>
-          <h5>Call & trade</h5>
+          <h5>Call & Trade Charges</h5>
           <p>
-            Additional charges of ₹50 per order for orders placed through a
-            dealer at Zerodha including auto square off orders.
+            Additional fees for orders placed through dealers or automated systems. In real trading, this ensures order execution but adds to costs.  {/* Generalized, removed Zerodha-specific details */}
           </p>
-          <h5>Stamp charges</h5>
+          <h5>Stamp Charges</h5>
           <p>
-            Stamp charges by the Government of India as per the Indian Stamp Act
-            of 1899 for transacting in instruments on the stock exchanges and
-            depositories.
+            Government fees for transactions as per stamp duty laws. Applied to stock and depository transactions in real trading.  {/* Generalized */}
           </p>
-          <h5>NRI brokerage charges</h5>
+          <h5>NRI Trading Charges</h5>
           <ul>
-            <li>₹100 per order for futures and options.</li>
-            <li>
-              For a non-PIS account, 0.5% or ₹100 per executed order for equity
-              (whichever is lower).
-            </li>
-            <li>
-              For a PIS account, 0.5% or ₹200 per executed order for equity
-              (whichever is lower).
-            </li>
-            <li>
-              ₹500 + GST as yearly account maintenance charges (AMC) charges.
-            </li>
-          </ul>
-          <h5>Account with debit balance</h5>
+            <li>Higher fees for international traders on derivatives.</li>
+            <li>Percentage-based or fixed charges on equity trades.</li>
+            <li>Annual account maintenance fees.</li>
+          </ul>  {/* Generalized, removed specific amounts */}
+          <h5>Account Debit Balance Charges</h5>
           <p>
-            If the account is in debit balance, any order placed will be charged
-            ₹40 per executed order instead of ₹20 per executed order.
+            Penalties for negative balances in trading accounts. In real trading, this encourages timely payments.  {/* Generalized */}
           </p>
-          <h5>Charges for Investor's Protection Fund Trust (IPFT) by NSE</h5>
+          <h5>Investor Protection Fund Charges</h5>
           <ul>
-            <li>
-              Equity and Futures - ₹10 per crore + GST of the traded value.
-            </li>
-            <li>Options - ₹50 per crore + GST traded value (premium value).</li>
-            <li>
-              Currency - ₹0.05 per lakh + GST of turnover for Futures and ₹2 per
-              lakh + GST of premium for Options.
-            </li>
-          </ul>
+            <li>Fees for equity and futures to support market safety.</li>
+            <li>Higher rates for options and currency trades.</li>
+          </ul>  {/* Generalized, removed specific rates */}
         </div>
         <div className="col-12 col-lg-6">
           <h5>GST</h5>
           <p>
-            Tax levied by the government on the services rendered. 18% of (
-            brokerage + SEBI charges + transaction charges)
+            Government tax on services, calculated as a percentage of brokerage and other charges. In real trading, this is added to total costs.  {/* Generalized */}
           </p>
-          <h5>SEBI Charges</h5>
+          <h5>Regulatory Charges</h5>
           <p>
-            Charged at ₹10 per crore + GST by Securities and Exchange Board of
-            India for regulating the markets.
+            Fees by market regulators for oversight. In real trading, these ensure fair markets.  {/* Generalized, removed SEBI-specific details */}
           </p>
-          <h5>DP (Depository participant) charges</h5>
+          <h5>Depository Participant Charges</h5>
           <p>
-            ₹15.34 per scrip (₹3.5 CDSL fee + ₹9.5 Zerodha fee + ₹2.34 GST) is
-            charged on the trading account ledger when stocks are sold,
-            irrespective of quantity.
-            <br />
-            Female demat account holders (as first holder) will enjoy a discount
-            of ₹0.25 per transaction on the CDSL fee.
-            <br />
-            Debit transactions of mutual funds & bonds get an additional
-            discount of ₹0.25 on the CDSL fee.
+            Fees for holding and transferring securities. In real trading, charged per transaction, with possible discounts for certain accounts.  {/* Generalized, removed Zerodha-specific fees */}
           </p>
-          <h5>Pledging charges</h5>
-          <p>₹30 + GST per pledge request per ISIN.</p>
-          <h5>AMC (Account maintenance charges)</h5>
+          <h5>Pledging Charges</h5>
+          <p>Fees for securing loans against securities. In real trading, applied per request.  {/* Generalized */}</p>
+          <h5>Account Maintenance Charges</h5>
           <p>
-            For BSDA demat account: Zero charges if the holding value is less
-            than ₹4,00,000. To learn more about BSDA, Click here
-            <br />
-            For non-BSDA demat accounts: ₹300/year + 18% GST charged quarterly
-            (90 days). To learn more about AMC, Click here
+            Annual fees for demat accounts, often waived for low-value holdings. In real trading, varies by account type.  {/* Generalized, removed specific links */}
           </p>
-          <h5>Corporate action order charges</h5>
+          <h5>Corporate Action Charges</h5>
           <p>
-            ₹20 plus GST will be charged for OFS / buyback / takeover /
-            delisting orders placed through Console.
+            Fees for special orders like buybacks. In real trading, added to transaction costs.  {/* Generalized */}
           </p>
-          <h5>Off-market transfer charges</h5>
-          <p>₹25 or 0.03% of the transfer value (whichever is higher).</p>
-
-          <h5>Physical CMR request</h5>
+          <h5>Off-Market Transfer Charges</h5>
+          <p>Fees for non-exchange transfers, based on value. In real trading, ensures secure movements.  {/* Generalized */}</p>
+          <h5>Physical Document Requests</h5>
           <p>
-            First CMR request is free. ₹20 + ₹100 (courier charge) + 18% GST for
-            subsequent requests.
+            Charges for printed statements beyond the first. In real trading, includes courier fees.  {/* Generalized */}
           </p>
-          <h5>Payment gateway charges</h5>
-          <p>₹9 + GST (Not levied on transfers done via UPI)</p>
+          <h5>Payment Gateway Charges</h5>
+          <p>Fees for online payments, often waived for certain methods. In real trading, part of fund transfers.  {/* Generalized */}</p>
           <h5>Delayed Payment Charges</h5>
           <p>
-            Interest is levied at 18% a year or 0.05% per day on the debit
-            balance in your trading account. Learn more.
+            Interest on overdue balances. In real trading, encourages prompt settlements.  {/* Generalized */}
           </p>
         </div>
       </div>
       <div className="row Brokerage">
         <h5>Disclaimer</h5>
         <p>
-          For Delivery based trades, a minimum of ₹0.01 will be charged per
-          contract note. Clients who opt to receive physical contract notes will
-          be charged ₹20 per contract note plus courier charges. Brokerage will
-          not exceed the rates specified by SEBI and the exchanges. All
-          statutory and regulatory charges will be levied at actuals. Brokerage
-          is also charged on expired, exercised, and assigned options contracts.
-          Free investments are available only for our retail individual clients.
-          Companies, Partnerships, Trusts, and HUFs need to pay 0.1% or ₹20
-          (whichever is less) as delivery brokerage. A brokerage of 0.25% of the
-          contract value will be charged for contracts where physical delivery
-          happens. For netted off positions in physically settled contracts, a
-          brokerage of 0.1% will be charged.
+          ZEROTRADE is an educational trading simulator with no real charges or transactions. All content here is for learning about typical trading costs in real markets. Investments carry market risks; this simulator does not guarantee real-world results. Consult a financial advisor for actual trading. No brokerage fees apply in simulations.  {/* Completely rewritten to emphasize education and simulation, removed Zerodha-specific policies */}
         </p>
       </div>
     </div>

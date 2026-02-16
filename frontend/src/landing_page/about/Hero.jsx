@@ -1,28 +1,28 @@
-import React from 'react'
+import React from 'react';
 
 function Hero() {
   return (
     <div className="container">
       <div className="row p-3 p-md-5 mt-4 mt-md-5 mb-4 mb-md-5">
         <h1 className="about-hero-title text-center">
-          We pioneered the discount broking model in India. <br className="d-none d-md-inline" />
-          Now, we are breaking ground with our technology.
-        </h1>
+          We pioneered educational trading simulations in India. <br className="d-none d-md-inline" />
+          Now, we're advancing learning with technology.
+        </h1>  {/* Updated to ZEROTRADE's educational focus */}
       </div>
       <div className="row p-3 p-md-5 mt-4 mt-md-5 border-top about-hero-content">
         <div className="col-12 col-lg-6 p-3 p-md-5">
-          <p>We kick-started operations on the 15th of August, 2010 with the goal of breaking all barriers that traders and investors face in India in terms of cost, support, and technology. We named the company Zerodha, a combination of Zero and "Rodha", the Sanskrit word for barrier.</p>
-          <p>Today, our disruptive pricing models and in-house technology have made us the biggest stock broker in India.</p>
-          <p>Over 1+ Crore clients place millions of orders every day through our powerful ecosystem of investment platforms, contributing over 15% of all Indian retail trading volumes.</p>
+          <p>We launched ZEROTRADE with the goal of removing barriers to learning trading and investing in India through cost-effective, supportive, and innovative technology. Our name reflects our commitment to zero barriers in education.</p>  {/* Rewritten to educational mission, removed Zerodha specifics */}
+          <p>Today, our user-friendly simulations and in-house tools have made us a leading platform for trading education in India.</p>  {/* Updated to educational focus */}
+          <p>Thousands of learners engage daily with our ecosystem of virtual platforms, gaining skills in a risk-free environment.</p>  {/* Rewritten to simulation and learning focus */}
         </div>
         <div className="col-12 col-lg-6 p-3 p-md-5">
-          <p>In addition, we run a number of popular open online educational and community initiatives to empower retail traders and investors.</p>
-          <p><a href="/">Rainmatter</a>, our fintech fund and incubator, has invested in several fintech startups with the goal of growing the Indian capital markets.</p>
-          <p>And yet, we are always up to something new every day. Catch up on the latest updates on our <a href="/">blog</a> or see what the media is <a href="/">saying about us</a>.</p>
+          <p>In addition, we support popular online educational and community initiatives to empower aspiring traders and investors.</p>  {/* Generalized to educational focus */}
+          <p><a href="/community">ZEROTRADE Community</a>, our learning hub, fosters growth in financial literacy through virtual collaborations.</p>  {/* Updated to ZEROTRADE branding and educational focus */}
+          <p>And we're always innovating. Catch up on the latest updates on our <a href="/blog">blog</a> or see what the media is <a href="/media">saying about us</a>.</p>  {/* Updated links to generic ZEROTRADE routes */}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Hero
+export default Hero;

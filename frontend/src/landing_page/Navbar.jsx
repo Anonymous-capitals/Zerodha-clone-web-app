@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <nav
-      className="navbar navbar-expand-lg sticky-top zerodha-nav"
+      className="navbar navbar-expand-lg sticky-top main-nav"  // Updated class from "zerodha-nav" to "main-nav" for rebranding
       style={{ 
-        background: "var(--zerodha-bg)", 
+        background: "var(--tradesim-bg)",  // Updated variable from "--zerodha-bg" to "--tradesim-bg"
         minHeight: "70px",
         paddingTop: "0.5rem",
         paddingBottom: "0.5rem"
@@ -17,7 +17,7 @@ function Navbar() {
           <img
             className="navbar-logo"
             src="media/images/logo.svg"
-            alt="Zerodha"
+            alt="Zerotrade"
             style={{maxHeight: "40px"}}
           />
         </Link>

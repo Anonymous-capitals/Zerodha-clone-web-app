@@ -1,9 +1,9 @@
 import React from "react";
 
 function RightSection({
-  imageURL,
-  productName,
-  productDescription,
+  imageURL,  // Ensure imageURL points to an original image, not Zerodha's (e.g., updated in ProductsPage.js to "media/images/dashboard.png")
+  productName,  // Updated in ProductsPage.js: Use generic names like "ZEROTRADE Dashboard" instead of "Console"
+  productDescription,  // Updated in ProductsPage.js: Make descriptions educational and simulation-focused
   tryDemo,
   learnMore,
   googlePlay,
@@ -17,10 +17,10 @@ function RightSection({
           <p className="product-section-desc">{productDescription}</p>
           <div className="mt-3 opacity-75 mb-4 product-section-links">
             {tryDemo !== "nil" && (
-              <a href="/"> {tryDemo} <i className="fa-solid fa-arrow-right"></i> </a>
+              <a href="/"> {tryDemo} <i className="fa-solid fa-arrow-right"></i> </a>  // Update links to point to actual routes if available
             )}
             {learnMore !== "nil" && (
-              <a href="/" className="ms-3 ms-md-4"> {learnMore} <i className="fa-solid fa-arrow-right"></i> </a>
+              <a href="/" className="ms-3 ms-md-4"> {learnMore} <i className="fa-solid fa-arrow-right"></i> </a>  // Update links to point to actual routes if available
             )}
           </div>
         </div>

@@ -1,18 +1,18 @@
-/* ========== Zerodha clone: brand colors & typography ========== */
+/* ========== ZEROTRADE: brand colors & typography ========== */
 :root {
-  --zerodha-primary: #387ed1;
-  --zerodha-primary-hover: #2d63a8;
-  --zerodha-accent: #f56834;
-  --zerodha-accent-hover: #e55a2b;
-  --zerodha-text: #333333;
-  --zerodha-text-light: #424242;
-  --zerodha-text-muted: #666;
-  --zerodha-text-lighter: #999;
-  --zerodha-border: #e0e0e0;
-  --zerodha-bg: #ffffff;
-  --zerodha-bg-alt: #f7f7f7;
-  --zerodha-bg-light: #fafafa;
-  --zerodha-section-alt: #f5f7fa;
+  --zerotrade-primary: #28a745;  /* Primary green for ZEROTRADE */
+  --zerotrade-primary-hover: #218838;
+  --zerotrade-accent: #17a2b8;  /* Accent teal */
+  --zerotrade-accent-hover: #138496;
+  --zerotrade-text: #333333;
+  --zerotrade-text-light: #424242;
+  --zerotrade-text-muted: #666;
+  --zerotrade-text-lighter: #999;
+  --zerotrade-border: #e0e0e0;
+  --zerotrade-bg: #ffffff;
+  --zerotrade-bg-alt: #f7f7f7;
+  --zerotrade-bg-light: #fafafa;
+  --zerotrade-section-alt: #f5f7fa;
 }
 
 body {
@@ -23,16 +23,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  color: var(--zerodha-text);
+  color: var(--zerotrade-text);
 }
 
-/* Zerodha-style primary buttons */
+/* ZEROTRADE-style primary buttons */
 .btn-primary,
 .hero-cta,
 .open-account-cta,
 .universe-cta {
-  background: var(--zerodha-primary) !important;
-  border-color: var(--zerodha-primary) !important;
+  background: var(--zerotrade-primary) !important;
+  border-color: var(--zerotrade-primary) !important;
   color: #fff !important;
   font-weight: 500;
   letter-spacing: 0.3px;
@@ -42,8 +42,8 @@ body {
 .hero-cta:hover,
 .open-account-cta:hover,
 .universe-cta:hover {
-  background: var(--zerodha-primary-hover) !important;
-  border-color: var(--zerodha-primary-hover) !important;
+  background: var(--zerotrade-primary-hover) !important;
+  border-color: var(--zerotrade-primary-hover) !important;
   color: #fff !important;
 }
 
@@ -61,7 +61,7 @@ nav .nav-link {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
-  color: var(--zerodha-text) !important;
+  color: var(--zerotrade-text) !important;
 }
 
 code {
@@ -143,7 +143,7 @@ html {
 
 .hero-title {
   font-size: clamp(1.75rem, 5vw, 3rem) !important;
-  color: var(--zerodha-text);
+  color: var(--zerotrade-text);
   font-weight: 600;
 }
 
@@ -171,7 +171,7 @@ html {
 
 .open-account-title {
   font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
-  color: var(--zerodha-text);
+  color: var(--zerotrade-text);
   font-weight: 600;
 }
 
@@ -181,7 +181,7 @@ html {
 
 .stats-title {
   font-size: clamp(1.5rem, 4vw, 2.3rem) !important;
-  color: var(--zerodha-text);
+  color: var(--zerotrade-text);
   font-weight: 600;
 }
 
@@ -214,7 +214,7 @@ html {
 
 .awards-title {
   font-size: clamp(1.4rem, 4vw, 2rem) !important;
-  color: var(--zerodha-text);
+  color: var(--zerotrade-text);
   font-weight: 600;
 }
 
@@ -237,40 +237,40 @@ html {
 
 .education-title {
   font-size: clamp(1.5rem, 3.5vw, 2.1rem) !important;
-  color: var(--zerodha-text);
+  color: var(--zerotrade-text);
   font-weight: 600;
 }
 
-.zerodha-link {
-  color: var(--zerodha-text);
+.zerotrade-link {  /* Renamed for ZEROTRADE */
+  color: var(--zerotrade-text);
   text-decoration: none;
   font-weight: 500;
 }
 
-.zerodha-link:hover {
-  color: var(--zerodha-primary);
+.zerotrade-link:hover {
+  color: var(--zerotrade-primary);
 }
 
-.zerodha-pricing-section {
+.zerotrade-pricing-section {  /* Renamed for ZEROTRADE */
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
 .home-pricing-title {
   font-size: clamp(1.3rem, 3.5vw, 1.75rem) !important;
-  color: var(--zerodha-text);
+  color: var(--zerotrade-text);
 }
 
 .home-pricing-box {
-  background: var(--zerodha-bg);
-  border-color: var(--zerodha-border) !important;
+  background: var(--zerotrade-bg);
+  border-color: var(--zerotrade-border) !important;
 }
 
 .home-pricing-box h1,
 .home-pricing-box h2 {
   font-size: clamp(1.5rem, 4vw, 2.25rem) !important;
   font-weight: 600;
-  color: var(--zerodha-text);
+  color: var(--zerotrade-text);
 }
 
 .HomeTextBlocks{
@@ -309,21 +309,21 @@ a{
 }
 
 .nav-link:hover {
-  color: var(--zerodha-primary) !important;
+  color: var(--zerotrade-primary) !important;
 }
 
-.zerodha-nav {
-  border-bottom: 1px solid var(--zerodha-border);
+.main-nav {  /* Consistent with ZEROTRADE theme */
+  border-bottom: 1px solid var(--zerotrade-border);
   box-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
 
-/* Zerodha-style links (primary blue on hover) */
+/* ZEROTRADE-style links (primary green on hover) */
 a:not(.nav-link):not(.btn) {
-  color: var(--zerodha-text);
+  color: var(--zerotrade-text);
 }
 
 a:not(.nav-link):not(.btn):hover {
-  color: var(--zerodha-primary);
+  color: var(--zerotrade-primary);
 }
 
 @media (max-width: 991px) {
@@ -354,22 +354,22 @@ a:not(.nav-link):not(.btn):hover {
 .footer-copyright {
   font-size: clamp(0.7rem, 2vw, 0.8rem);
   margin-top: 1rem;
-  color: var(--zerodha-text-muted);
+  color: var(--zerotrade-text-muted);
 }
 
 .footer-disclaimer p {
   font-size: clamp(0.65rem, 1.8vw, 0.7rem) !important;
   line-height: 1.5;
-  color: var(--zerodha-text-muted);
+  color: var(--zerotrade-text-muted);
 }
 
-.zerodha-footer {
-  background-color: var(--zerodha-bg-alt);
-  border-top: 1px solid var(--zerodha-border);
+.main-footer {  /* Consistent with ZEROTRADE theme */
+  background-color: var(--zerotrade-bg-alt);
+  border-top: 1px solid var(--zerotrade-border);
 }
 
 .footer a {
-  color: var(--zerodha-text);
+  color: var(--zerotrade-text);
   opacity: 0.9;
   display: block;
   margin-bottom: 0.3rem;
@@ -378,17 +378,17 @@ a:not(.nav-link):not(.btn):hover {
 
 .footer a:hover {
   opacity: 1;
-  color: var(--zerodha-primary);
+  color: var(--zerotrade-primary);
 }
 
 .footer p {
   font-size: clamp(0.95rem, 2.5vw, 1.2rem);
   font-weight: 500;
-  color: var(--zerodha-text);
+  color: var(--zerotrade-text);
 }
 
 .foootersLastPart a {
-  color: var(--zerodha-text);
+  color: var(--zerotrade-text);
   opacity: 0.8;
   font-size: small;
   display: inline;
@@ -397,7 +397,7 @@ a:not(.nav-link):not(.btn):hover {
 }
 
 .foootersLastPart a:hover {
-  color: var(--zerodha-primary);
+  color: var(--zerotrade-primary);
   opacity: 1;
 }
 
@@ -618,577 +618,4 @@ a:not(.nav-link):not(.btn):hover {
   transform: translateY(-50%);
   color: #aaa;
   pointer-events: none;
-}
-
-.support-quick-links a {
-  margin-right: 1rem;
-}
-
-.support-featured {
-  margin-top: 0;
-}
-
-@media (min-width: 992px) {
-  .support-featured {
-    padding-left: 2rem;
-  }
-}
-
-/* Ticket / CreateTicket */
-.Ticket,
-.ticket-heading {
-  margin-left: 0;
-}
-
-@media (min-width: 992px) {
-  .Ticket {
-    margin-left: clamp(2rem, 10vw, 10rem);
-  }
-}
-
-.ticket-heading {
-  font-weight: 350;
-  opacity: 0.85;
-  font-size: clamp(1.2rem, 3.5vw, 1.5rem) !important;
-}
-
-.ticket-col h3 {
-  font-size: clamp(1.1rem, 2.5vw, 1.25rem) !important;
-  font-weight: 500;
-  margin-bottom: 0.75rem;
-}
-
-.ticket-col a {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-/* About page */
-.about-hero-title {
-  opacity: 0.85;
-  font-size: clamp(1.5rem, 4vw, 2.1rem) !important;
-  line-height: 1.4;
-}
-
-.about-hero-content {
-  line-height: 1.8;
-  font-size: clamp(0.95rem, 2.2vw, 1.05rem);
-  opacity: 0.98;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-@media (min-width: 992px) {
-  .about-hero-content {
-    margin-left: clamp(2rem, 6vw, 6rem) !important;
-    margin-right: clamp(2rem, 6vw, 6rem) !important;
-  }
-}
-
-/* Pricing page hero columns */
-.pricing-hero-title {
-  opacity: 0.85;
-  font-size: clamp(1.75rem, 5vw, 2.7rem) !important;
-  line-height: 1.2;
-  margin-top: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .pricing-hero-title {
-    margin-top: 3.5rem;
-  }
-}
-
-.pricing-hero-col {
-  padding: clamp(1rem, 4vw, 2rem);
-}
-
-.brokerage-heading {
-  font-size: clamp(1.1rem, 3.5vw, 1.4rem) !important;
-  text-align: center;
-}
-
-/* ========== AUTH FORM STYLING ========== */
-
-/* Form Input Styling */
-form input {
-  padding: clamp(0.75rem, 2vw, 1rem);
-  margin-bottom: clamp(1rem, 2vw, 1.2rem);
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  font-family: inherit;
-  transition: all 0.3s ease;
-  background-color: #f9f9f9;
-}
-
-form input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  background-color: #fff;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-form input::placeholder {
-  color: #999;
-}
-
-/* Modern Login/Signup Button */
-form button {
-  padding: clamp(0.9rem, 2.5vw, 1.1rem) clamp(1.5rem, 5vw, 2rem);
-  margin-top: clamp(0.75rem, 2vw, 1rem);
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-  font-family: inherit;
-  text-transform: uppercase;
-}
-
-form button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
-  transform: translateY(-2px);
-}
-
-form button:active:not(:disabled) {
-  transform: translateY(0);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-}
-
-form button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-form button:disabled:hover {
-  transform: none;
-}
-
-/* Success/Error Messages */
-form + p {
-  font-weight: 500;
-  margin-top: clamp(1rem, 2vw, 1.5rem) !important;
-  padding: clamp(0.75rem, 2vw, 1rem);
-  border-radius: 6px;
-  animation: slideDown 0.3s ease;
-}
-
-form + p[style*="green"] {
-  background-color: #d1fae5;
-  color: #065f46;
-  border-left: 4px solid #10b981;
-}
-
-form + p[style*="red"] {
-  background-color: #fee2e2;
-  color: #991b1b;
-  border-left: 4px solid #ef4444;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ========== ENHANCED LANDING PAGE STYLING ========== */
-
-/* Navbar enhancements */
-.zerodha-nav {
-  background: var(--zerodha-bg) !important;
-  border-bottom: 1px solid var(--zerodha-border);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s ease;
-}
-
-.zerodha-nav:hover {
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-}
-
-.navbar-brand:hover .navbar-logo {
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-/* Section backgrounds for better visual hierarchy */
-.section-light {
-  background: var(--zerodha-bg);
-}
-
-.section-alt {
-  background: var(--zerodha-section-alt);
-}
-
-/* Hero section enhancement */
-.hero-section {
-  padding: 4rem 0;
-  background: linear-gradient(135deg, rgba(56, 126, 209, 0.03) 0%, rgba(56, 126, 209, 0.01) 100%);
-}
-
-.hero-cta,
-.open-account-cta,
-.universe-cta {
-  box-shadow: 0 2px 8px rgba(56, 126, 209, 0.15);
-  transition: all 0.3s ease;
-}
-
-.hero-cta:hover,
-.open-account-cta:hover,
-.universe-cta:hover {
-  box-shadow: 0 4px 16px rgba(56, 126, 209, 0.25);
-}
-
-/* Section titles with better styling */
-.section-title {
-  color: var(--zerodha-text);
-  font-weight: 600;
-  margin-bottom: 1rem;
-  letter-spacing: -0.3px;
-}
-
-.section-subtitle {
-  color: var(--zerodha-text-muted);
-  font-weight: 400;
-  line-height: 1.6;
-}
-
-/* Home page sections */
-.home-section {
-  padding: 4rem 0;
-}
-
-.home-section:nth-child(even) {
-  background: var(--zerodha-section-alt);
-}
-
-/* Pricing boxes with hover effect */
-.home-pricing-box {
-  background: var(--zerodha-bg);
-  border: 1px solid var(--zerodha-border) !important;
-  transition: all 0.3s ease;
-  border-radius: 8px;
-}
-
-.home-pricing-box:hover {
-  border-color: var(--zerodha-primary) !important;
-  box-shadow: 0 4px 12px rgba(56, 126, 209, 0.1);
-  transform: translateY(-2px);
-}
-
-/* Awards and Stats styling */
-.awards-border {
-  border: 1px solid var(--zerodha-border);
-}
-
-/* Better link styling for nav items */
-.nav-link {
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--zerodha-primary);
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-
-/* Footer enhancements */
-.zerodha-footer {
-  background: var(--zerodha-bg-alt);
-  border-top: 1px solid var(--zerodha-border);
-  padding-top: 3rem;
-}
-
-.footer-col {
-  margin-bottom: 2rem;
-}
-
-.footer-col img {
-  margin-bottom: 1rem;
-}
-
-.footer p {
-  font-size: clamp(0.95rem, 2.5vw, 1rem);
-  color: var(--zerodha-text);
-  font-weight: 500;
-}
-
-.footer a {
-  color: var(--zerodha-text);
-  opacity: 0.85;
-  margin-bottom: 0.5rem;
-  display: block;
-  transition: all 0.2s ease;
-  font-size: 0.95rem;
-}
-
-.footer a:hover {
-  color: var(--zerodha-primary);
-  opacity: 1;
-  padding-left: 4px;
-}
-
-/* Social media links styling (prepared for future) */
-.social-links {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.social-links a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--zerodha-section-alt);
-  color: var(--zerodha-primary);
-  transition: all 0.3s ease;
-}
-
-.social-links a:hover {
-  background: var(--zerodha-primary);
-  color: var(--zerodha-bg);
-  transform: translateY(-2px);
-}
-
-/* Text styling improvements */
-h1, h2, h3, h4, h5, h6 {
-  letter-spacing: -0.3px;
-}
-
-p {
-  line-height: 1.6;
-  color: var(--zerodha-text);
-}
-
-.text-muted {
-  color: var(--zerodha-text-muted) !important;
-}
-
-/* Container and spacing */
-.container {
-  max-width: 1140px;
-  padding-left: clamp(1rem, 5vw, 2rem);
-  padding-right: clamp(1rem, 5vw, 2rem);
-}
-
-/* Section padding */
-.section-padding {
-  padding-top: clamp(2rem, 8vw, 4rem);
-  padding-bottom: clamp(2rem, 8vw, 4rem);
-}
-
-/* ========== RESPONSIVE DESIGN ========== */
-
-/* Mobile: 320px - 640px */
-@media screen and (max-width: 640px) {
-  .nav-link {
-    margin-left: 10px;
-  }
-
-  .foootersLastPart {
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .foootersLastPart a {
-    display: block;
-    margin-left: 0;
-    margin-bottom: 8px;
-  }
-
-  .Universe {
-    padding: 1rem;
-  }
-
-  .Pricing div {
-    padding: 1.5rem;
-  }
-
-  .Brokerage {
-    padding: 1.5rem;
-  }
-
-  .Ticket {
-    margin-left: 1rem;
-  }
-
-  .Ticket h3 {
-    font-size: clamp(1.2rem, 4vw, 1.5rem);
-  }
-
-  .Support a {
-    margin-right: 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  .container {
-    padding: 1rem !important;
-  }
-
-  .row {
-    margin-left: -0.5rem !important;
-    margin-right: -0.5rem !important;
-  }
-
-  .col-6 {
-    flex: 0 0 100% !important;
-    max-width: 100% !important;
-    padding: 0.5rem !important;
-  }
-
-  .col-12 {
-    flex: 0 0 100% !important;
-    max-width: 100% !important;
-  }
-
-  h1 {
-    font-size: clamp(1.5rem, 5vw, 2.5rem) !important;
-  }
-
-  h2 {
-    font-size: clamp(1.3rem, 4vw, 2rem) !important;
-  }
-
-  h3 {
-    font-size: clamp(1.1rem, 3.5vw, 1.5rem) !important;
-  }
-
-  p {
-    font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-/* Tablet: 641px - 1024px */
-@media screen and (min-width: 641px) and (max-width: 1024px) {
-  .nav-link {
-    margin-left: 20px;
-  }
-
-  .Universe {
-    padding: 0 4rem;
-  }
-
-  .Pricing div {
-    padding: 3rem;
-  }
-
-  .Brokerage {
-    padding: 2.5rem;
-  }
-
-  .Ticket {
-    margin-left: 3rem;
-  }
-
-  .col-6 {
-    flex: 0 0 50% !important;
-    max-width: 50% !important;
-  }
-
-  h1 {
-    font-size: clamp(2rem, 5vw, 3rem) !important;
-  }
-
-  h2 {
-    font-size: clamp(1.5rem, 4vw, 2.2rem) !important;
-  }
-
-  h3 {
-    font-size: clamp(1.2rem, 3.5vw, 1.8rem) !important;
-  }
-
-  .container {
-    padding: 1.5rem !important;
-  }
-}
-
-/* Desktop: 1025px and up */
-@media screen and (min-width: 1025px) {
-  .nav-link {
-    margin-left: 40px;
-  }
-
-  .Universe {
-    padding: 0 12rem;
-  }
-
-  .Pricing div {
-    padding: 5rem;
-  }
-
-  .Brokerage {
-    padding: 4rem;
-  }
-
-  .Ticket {
-    margin-left: 10rem;
-  }
-
-  .col-6 {
-    flex: 0 0 50% !important;
-  }
-
-  .col-12 {
-    flex: 0 0 100% !important;
-  }
-}
-
-/* Extra small devices (below 320px) */
-@media screen and (max-width: 319px) {
-  .nav-link {
-    margin-left: 5px;
-  }
-
-  .Universe {
-    padding: 0.5rem;
-  }
-
-  .Brokerage {
-    padding: 1rem;
-  }
-
-  .Ticket {
-    margin-left: 0.5rem;
-  }
-
-  h1 {
-    font-size: 1.3rem !important;
-  }
-
-  h2 {
-    font-size: 1.1rem !important;
-  }
-
-  p {
-    font-size: 0.85rem !important;
-  }
 }

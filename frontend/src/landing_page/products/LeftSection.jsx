@@ -2,8 +2,8 @@ import React from "react";
 
 function LeftSection({
   imageURL,
-  productName,
-  productDescription,
+  productName,  // Update in ProductsPage.js: Use generic names like "ZEROTRADE Trading Simulator" instead of "Kite"
+  productDescription,  // Update in ProductsPage.js: Make descriptions educational and simulation-focused
   tryDemo,
   learnMore,
   googlePlay,
@@ -13,25 +13,25 @@ function LeftSection({
     <div className="container mt-4 mt-md-5 product-section">
       <div className="row align-items-center g-4">
         <div className="col-12 col-lg-6 order-2 order-lg-1 text-center text-lg-start">
-          <img src={imageURL} alt={productName} className="product-section-img" />
+          <img src={imageURL} alt={productName} className="product-section-img" />  {/* Ensure imageURL points to an original image, not Zerodha's */}
         </div>
         <div className="col-12 col-lg-6 order-1 order-lg-2 product-section-content">
           <h1 className="mb-3 mb-md-5 opacity-75 product-section-title">{productName}</h1>
           <p className="product-section-desc">{productDescription}</p>
           <div className="mt-3 opacity-75 mb-3 product-section-links">
             {tryDemo !== "nil" && (
-              <a href="/"> {tryDemo} <i className="fa-solid fa-arrow-right"></i> </a>
+              <a href="/"> {tryDemo} <i className="fa-solid fa-arrow-right"></i> </a>  // Update links to point to actual demo routes if available
             )}
             {learnMore !== "nil" && (
-              <a href="/" className="ms-3 ms-md-4"> {learnMore} <i className="fa-solid fa-arrow-right"></i> </a>
+              <a href="/" className="ms-3 ms-md-4"> {learnMore} <i className="fa-solid fa-arrow-right"></i> </a>  // Update links to point to actual learn-more routes
             )}
           </div>
           <div className="product-badges d-flex flex-wrap gap-3 gap-md-4">
             <a href="/" aria-label="Google Play">
-              <img src="media/images/googlePlayBadge.svg" alt="Google Play" className="store-badge" />
+              <img src="media/images/googlePlayBadge.svg" alt="Google Play" className="store-badge" />  {/* Generic badge; ensure it's a standard one, not Zerodha-modified */}
             </a>
             <a href="/" aria-label="App Store">
-              <img src="media/images/appstoreBadge.svg" alt="App Store" className="store-badge" />
+              <img src="media/images/appstoreBadge.svg" alt="App Store" className="store-badge" />  {/* Generic badge; ensure it's a standard one, not Zerodha-modified */}
             </a>
           </div>
         </div>

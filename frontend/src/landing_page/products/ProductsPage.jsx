@@ -9,51 +9,52 @@ function ProductsPage() {
     <>
       <Hero />
       <LeftSection
-        imageURL="media/images/kite.png"
-        productName="Kite"
-        productDescription="Our ultra-fast flagship trading platform with streaming market data, advanced charts, an elegant UI, and more. Enjoy the Kite experience seamlessly on your Android and iOS devices."
-        tryDemo="Try Demo"
-        learnMore="Learn More"
+        imageURL="media/images/trading_simulator.png"  // Updated to original image (e.g., a generic trading chart; replace with your file)
+        productName="ZEROTRADE Trading Simulator"  // Updated to ZEROTRADE branding and simulation focus
+        productDescription="Our intuitive simulation platform for learning trading with virtual market data, charts, and a user-friendly interface. Experience seamless learning on your devices."  // Rewritten to educational, simulation-focused
+        tryDemo="Try Simulation"  // Updated to generic
+        learnMore="Learn More"  // Kept generic
         googlePlay=""
         appleStore=""
       />
       <RightSection
-      imageURL="media/images/console.png"
-      productName="Console"
-      productDescription="The central dashboard for your Zerodha account. Gain insights into your trades and investments with in-depth reports and visualisations."
-      tryDemo="Learn More"
-      learnMore="nil"
-      googlePlay=""
-      appleStore=""
-      />
-      <LeftSection
-        imageURL="media/images/coin.png"
-        productName="Coin"
-        productDescription="Buy direct mutual funds online, commission-free, delivered directly to your Demat account. Enjoy the investment experience on your Android and iOS devices."
-        tryDemo="Coin"
+        imageURL="media/images/dashboard.png"  // Updated to original image (e.g., a generic dashboard chart; replace with your file)
+        productName="ZEROTRADE Dashboard"  // Updated to ZEROTRADE branding
+        productDescription="The central hub for your simulation account. Get insights into your virtual trades and investments with reports and visualizations."  // Rewritten to simulation-focused, removed Zerodha references
+        tryDemo="Learn More"  // Kept generic
         learnMore="nil"
         googlePlay=""
         appleStore=""
       />
-      <RightSection 
-      imageURL="media/images/kiteconnect.png"
-      productName="Kite Connect API"
-      productDescription="Build powerful trading platforms and experiences with our super simple HTTP/JSON APIs. If you are a startup, build your investment app and showcase it to our clientbase."
-      tryDemo="Kite Connect "
-      learnMore="nil"
-      googlePlay=""
-      appleStore=""
+      <LeftSection
+        imageURL="media/images/investment_simulator.png"  // Updated to original image (e.g., a generic investment chart; replace with your file)
+        productName="ZEROTRADE Investment Simulator"  // Updated to ZEROTRADE branding and simulation focus
+        productDescription="Simulate mutual fund investments online with educational tools, delivered to your virtual account. Learn the investment process on your devices."  // Rewritten to educational, removed real account/commission references
+        tryDemo="Investment Simulator"  // Updated to generic
+        learnMore="nil"
+        googlePlay=""
+        appleStore=""
+      />
+      <RightSection
+        imageURL="media/images/api_simulator.png"  // Updated to original image (e.g., a generic API diagram; replace with your file)
+        productName="ZEROTRADE API Simulator"  // Updated to ZEROTRADE branding and simulation focus
+        productDescription="Build educational trading experiences with our simple APIs. Perfect for learners and developers creating simulation apps."  // Rewritten to educational, removed startup/clientbase references
+        tryDemo="API Simulator"  // Updated to generic
+        learnMore="nil"
+        googlePlay=""
+        appleStore=""
       />
       <LeftSection
-        imageURL="media/images/varsity.png"
-        productName="Varsity mobile"
-        productDescription="An easy to grasp, collection of stock market lessons with in-depth coverage and illustrations. Content is broken down into bite-size cards to help you learn on the go."
+        imageURL="media/images/learning_mobile.png"  // Updated to original image (e.g., a generic learning app screenshot; replace with your file)
+        productName="ZEROTRADE Learning Mobile"  // Updated to ZEROTRADE branding and educational focus
+        productDescription="An easy-to-follow collection of trading lessons with illustrations and bite-size content. Learn on the go with our mobile-friendly simulator."  // Rewritten to educational, removed Zerodha-specific details
         tryDemo="nil"
         learnMore="nil"
         googlePlay=""
         appleStore=""
       />
-      <p className="products-tech-link">Want to know more about our technology stack? Check out the <a href="/">Zerodha.tech</a> blog.</p>
+      {/* Updated to ZEROTRADE branding, removed "Zerodha.tech" */}
+      <p className="products-tech-link">Want to know more about our technology stack? Check out the <a href="/">ZEROTRADE Blog</a>.</p>
       <Universe />
     </>
   );
