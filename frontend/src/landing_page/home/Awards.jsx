@@ -30,7 +30,7 @@ function Awards() {
             }}
           >
             <img 
-              src="media/images/simulator_award.svg"
+              src="media/images/trading_simulator.png"
               alt="Leading Simulator" 
               className="award-image"
               style={{
