@@ -1,47 +1,40 @@
-import React, { useContext, useState, useCallback } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
 import api from "../api/axiosConfig";
 import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
 
-const AVAILABLE_FUNDS = 100000; // 1 lakh rupees fund limit
+// For demo purpose (later this should come from backend holdings)
+const AVAILABLE_SHARES = 200;
 
 const SellActionWindow = ({ uid }) => {
   const [stockPrice, setStockPrice] = useState("");
   const [stockQuantity, setStockQuantity] = useState("1");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const { closeSellWindow } = useContext(GeneralContext);
 
   const priceNum = parseFloat(stockPrice) || 0;
   const qtyNum = Math.max(0, Math.floor(parseFloat(stockQuantity) || 0));
   const total = priceNum * qtyNum;
 
-  const handlePriceChange = useCallback((e) => {
-    const val = e.target.value;
-    setStockPrice(val);
-    const p = parseFloat(val);
-    if (p > 0) {
-      const maxQty = Math.max(1, Math.floor(AVAILABLE_FUNDS / p));
-      setStockQuantity(String(maxQty));
-    }
-  }, []);
-
-  const handleQuantityChange = useCallback((e) => {
-    const val = e.target.value;
-    setStockQuantity(val);
-    const q = parseFloat(val);
-    if (q > 0) {
-      const optimalPrice = (AVAILABLE_FUNDS / q).toFixed(2);
-      setStockPrice(optimalPrice);
-    }
-  }, []);
+  const hasEnoughShares = qtyNum <= AVAILABLE_SHARES;
 
   const handleSellClick = async () => {
-    if (!qtyNum || !priceNum) {
-      alert("Please enter valid quantity and price");
+    setError("");
+
+    if (!priceNum || !qtyNum) {
+      setError("Please enter valid quantity and price");
       return;
     }
+
+    if (!hasEnoughShares) {
+      setError(`You only have ${AVAILABLE_SHARES} shares available`);
+      return;
+    }
+
     setLoading(true);
+
     try {
       await api.post("/newOrder", {
         name: uid,
@@ -49,11 +42,12 @@ const SellActionWindow = ({ uid }) => {
         price: priceNum,
         mode: "SELL",
       });
-      alert("Order placed successfully!");
+
+      alert("Sell order placed successfully!");
       closeSellWindow();
     } catch (error) {
       console.error("Sell order error:", error);
-      alert(error.response?.data?.error || "Failed to place order");
+      setError(error.response?.data?.error || "Failed to place order");
     } finally {
       setLoading(false);
     }
@@ -64,7 +58,7 @@ const SellActionWindow = ({ uid }) => {
   };
 
   return (
-    <div className="container" id="buy-window" draggable="true">
+    <div className="container" id="sell-window">
       <div className="regular-order">
         <div className="inputs">
           <fieldset>
@@ -72,45 +66,57 @@ const SellActionWindow = ({ uid }) => {
             <input
               type="number"
               name="qty"
-              id="qty"
-              onChange={handleQuantityChange}
               value={stockQuantity}
+              onChange={(e) => setStockQuantity(e.target.value)}
               min="1"
             />
           </fieldset>
+
           <fieldset>
             <legend>Price</legend>
             <input
               type="number"
               name="price"
-              id="price"
               step="0.05"
-              onChange={handlePriceChange}
               value={stockPrice}
+              onChange={(e) => setStockPrice(e.target.value)}
               min="0"
               placeholder="0.00"
             />
           </fieldset>
         </div>
+
         <div className="order-total">
           Total value: <strong>₹{total.toFixed(2)}</strong>
-          {priceNum > 0 && (
-            <span className="order-total-hint">
-              (At this price you can sell up to {Math.max(1, Math.floor(AVAILABLE_FUNDS / priceNum))} shares)
-            </span>
-          )}
         </div>
+
+        {!hasEnoughShares && qtyNum > 0 && (
+          <div className="error-message">
+            You only have {AVAILABLE_SHARES} shares available
+          </div>
+        )}
+
+        {error && <div className="error-message">{error}</div>}
       </div>
 
       <div className="buttons">
-        <span>Fund limit: ₹{total.toFixed(2)}</span>
+        <span>Available shares: {AVAILABLE_SHARES}</span>
         <div>
-          <Link className="btn btn-blue" onClick={handleSellClick} disabled={loading}>
+          <button
+            className="btn btn-blue"
+            onClick={handleSellClick}
+            disabled={loading || !hasEnoughShares}
+          >
             {loading ? "Processing..." : "Sell"}
-          </Link>
-          <Link to="" className="btn btn-grey" onClick={handleCancelClick}>
+          </button>
+
+          <button
+            className="btn btn-grey"
+            onClick={handleCancelClick}
+            disabled={loading}
+          >
             Cancel
-          </Link>
+          </button>
         </div>
       </div>
     </div>

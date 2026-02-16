@@ -1,5 +1,4 @@
-import React, { useContext, useState, useCallback } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
 import api from "../api/axiosConfig";
 import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
@@ -10,38 +9,31 @@ const BuyActionWindow = ({ uid }) => {
   const [stockPrice, setStockPrice] = useState("");
   const [stockQuantity, setStockQuantity] = useState("1");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const { closeBuyWindow } = useContext(GeneralContext);
 
   const priceNum = parseFloat(stockPrice) || 0;
   const qtyNum = Math.max(0, Math.floor(parseFloat(stockQuantity) || 0));
   const total = priceNum * qtyNum;
 
-  const handlePriceChange = useCallback((e) => {
-    const val = e.target.value;
-    setStockPrice(val);
-    const p = parseFloat(val);
-    if (p > 0) {
-      const maxQty = Math.max(1, Math.floor(AVAILABLE_FUNDS / p));
-      setStockQuantity(String(maxQty));
-    }
-  }, []);
-
-  const handleQuantityChange = useCallback((e) => {
-    const val = e.target.value;
-    setStockQuantity(val);
-    const q = parseFloat(val);
-    if (q > 0) {
-      const optimalPrice = (AVAILABLE_FUNDS / q).toFixed(2);
-      setStockPrice(optimalPrice);
-    }
-  }, []);
+  const hasSufficientFunds = total <= AVAILABLE_FUNDS;
 
   const handleBuyClick = async () => {
-    if (!qtyNum || !priceNum) {
-      alert("Please enter valid quantity and price");
+    setError("");
+
+    if (!priceNum || !qtyNum) {
+      setError("Please enter valid quantity and price");
       return;
     }
+
+    if (!hasSufficientFunds) {
+      setError("Insufficient funds to place this order");
+      return;
+    }
+
     setLoading(true);
+
     try {
       await api.post("/newOrder", {
         name: uid,
@@ -49,11 +41,12 @@ const BuyActionWindow = ({ uid }) => {
         price: priceNum,
         mode: "BUY",
       });
+
       alert("Order placed successfully!");
       closeBuyWindow();
     } catch (error) {
       console.error("Buy order error:", error);
-      alert(error.response?.data?.error || "Failed to place order");
+      setError(error.response?.data?.error || "Failed to place order");
     } finally {
       setLoading(false);
     }
@@ -64,7 +57,7 @@ const BuyActionWindow = ({ uid }) => {
   };
 
   return (
-    <div className="container" id="buy-window" draggable="true">
+    <div className="container" id="buy-window">
       <div className="regular-order">
         <div className="inputs">
           <fieldset>
@@ -72,45 +65,57 @@ const BuyActionWindow = ({ uid }) => {
             <input
               type="number"
               name="qty"
-              id="qty"
-              onChange={handleQuantityChange}
               value={stockQuantity}
+              onChange={(e) => setStockQuantity(e.target.value)}
               min="1"
             />
           </fieldset>
+
           <fieldset>
             <legend>Price</legend>
             <input
               type="number"
               name="price"
-              id="price"
               step="0.05"
-              onChange={handlePriceChange}
               value={stockPrice}
+              onChange={(e) => setStockPrice(e.target.value)}
               min="0"
               placeholder="0.00"
             />
           </fieldset>
         </div>
+
         <div className="order-total">
           Total: <strong>₹{total.toFixed(2)}</strong>
-          {priceNum > 0 && (
-            <span className="order-total-hint">
-              (At this price you can buy up to {Math.max(1, Math.floor(AVAILABLE_FUNDS / priceNum))} shares)
-            </span>
-          )}
         </div>
+
+        {!hasSufficientFunds && total > 0 && (
+          <div className="error-message">
+            Insufficient funds. Available: ₹{AVAILABLE_FUNDS.toFixed(2)}
+          </div>
+        )}
+
+        {error && <div className="error-message">{error}</div>}
       </div>
 
       <div className="buttons">
         <span>Margin required ₹{total.toFixed(2)}</span>
         <div>
-          <Link className="btn btn-blue" onClick={handleBuyClick} disabled={loading}>
+          <button
+            className="btn btn-blue"
+            onClick={handleBuyClick}
+            disabled={loading || !hasSufficientFunds}
+          >
             {loading ? "Processing..." : "Buy"}
-          </Link>
-          <Link to="" className="btn btn-grey" onClick={handleCancelClick}>
+          </button>
+
+          <button
+            className="btn btn-grey"
+            onClick={handleCancelClick}
+            disabled={loading}
+          >
             Cancel
-          </Link>
+          </button>
         </div>
       </div>
     </div>
