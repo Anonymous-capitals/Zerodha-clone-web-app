@@ -4,7 +4,7 @@ import api from "../api/axiosConfig";
 import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
 
-const AVAILABLE_FUNDS = 4043.1;
+const AVAILABLE_FUNDS = 100000; // 1 lakh rupees
 
 const BuyActionWindow = ({ uid }) => {
   const [stockPrice, setStockPrice] = useState("");

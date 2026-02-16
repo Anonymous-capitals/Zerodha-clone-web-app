@@ -4,6 +4,8 @@ import api from "../api/axiosConfig";
 import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
 
+const AVAILABLE_FUNDS = 100000; // 1 lakh rupees fund limit
+
 const SellActionWindow = ({ uid }) => {
   const [stockPrice, setStockPrice] = useState("");
   const [stockQuantity, setStockQuantity] = useState("1");
@@ -17,15 +19,21 @@ const SellActionWindow = ({ uid }) => {
   const handlePriceChange = useCallback((e) => {
     const val = e.target.value;
     setStockPrice(val);
-    // When price is entered, keep quantity as is
-    // User can then adjust quantity manually to see different totals
+    const p = parseFloat(val);
+    if (p > 0) {
+      const maxQty = Math.max(1, Math.floor(AVAILABLE_FUNDS / p));
+      setStockQuantity(String(maxQty));
+    }
   }, []);
 
   const handleQuantityChange = useCallback((e) => {
     const val = e.target.value;
     setStockQuantity(val);
-    // When quantity is entered, calculate optimal price to match the price
-    // that would give a reasonable total, but allow user to override
+    const q = parseFloat(val);
+    if (q > 0) {
+      const optimalPrice = (AVAILABLE_FUNDS / q).toFixed(2);
+      setStockPrice(optimalPrice);
+    }
   }, []);
 
   const handleSellClick = async () => {
@@ -86,11 +94,16 @@ const SellActionWindow = ({ uid }) => {
         </div>
         <div className="order-total">
           Total value: <strong>₹{total.toFixed(2)}</strong>
+          {priceNum > 0 && (
+            <span className="order-total-hint">
+              (At this price you can sell up to {Math.max(1, Math.floor(AVAILABLE_FUNDS / priceNum))} shares)
+            </span>
+          )}
         </div>
       </div>
 
       <div className="buttons">
-        <span>Required: ₹{total.toFixed(2)}</span>
+        <span>Fund limit: ₹{total.toFixed(2)}</span>
         <div>
           <Link className="btn btn-blue" onClick={handleSellClick} disabled={loading}>
             {loading ? "Processing..." : "Sell"}

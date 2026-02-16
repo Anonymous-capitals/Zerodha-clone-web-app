@@ -5,14 +5,20 @@ function Navbar() {
   return (
     <nav
       className="navbar navbar-expand-lg sticky-top zerodha-nav"
-      style={{ background: "var(--zerodha-bg)", minHeight: "60px" }}
+      style={{ 
+        background: "var(--zerodha-bg)", 
+        minHeight: "70px",
+        paddingTop: "0.5rem",
+        paddingBottom: "0.5rem"
+      }}
     >
       <div className="container p-2 px-3">
-        <Link className="navbar-brand d-flex align-items-center" to="/">
+        <Link className="navbar-brand d-flex align-items-center" to="/" style={{transition: "opacity 0.2s ease"}}>
           <img
             className="navbar-logo"
             src="media/images/logo.svg"
             alt="Zerodha"
+            style={{maxHeight: "40px"}}
           />
         </Link>
         <button
@@ -27,21 +33,21 @@ function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-2">
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-3">
             <li className="nav-item">
-              <Link className="nav-link" to="/signup">Signup</Link>
+              <Link className="nav-link" to="/signup" style={{fontWeight: "500"}}>Signup</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/about">About</Link>
+              <Link className="nav-link" to="/about" style={{fontWeight: "500"}}>About</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/product">Product</Link>
+              <Link className="nav-link" to="/product" style={{fontWeight: "500"}}>Products</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/pricing">Pricing</Link>
+              <Link className="nav-link" to="/pricing" style={{fontWeight: "500"}}>Pricing</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/support">Support</Link>
+              <Link className="nav-link" to="/support" style={{fontWeight: "500"}}>Support</Link>
             </li>
           </ul>
         </div>

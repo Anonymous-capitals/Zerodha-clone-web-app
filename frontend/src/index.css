@@ -1,12 +1,18 @@
 /* ========== Zerodha clone: brand colors & typography ========== */
 :root {
-  --zerodha-orange: #f56834;
-  --zerodha-orange-hover: #e55a2b;
-  --zerodha-text: #424242;
+  --zerodha-primary: #387ed1;
+  --zerodha-primary-hover: #2d63a8;
+  --zerodha-accent: #f56834;
+  --zerodha-accent-hover: #e55a2b;
+  --zerodha-text: #333333;
+  --zerodha-text-light: #424242;
   --zerodha-text-muted: #666;
+  --zerodha-text-lighter: #999;
   --zerodha-border: #e0e0e0;
   --zerodha-bg: #ffffff;
   --zerodha-bg-alt: #f7f7f7;
+  --zerodha-bg-light: #fafafa;
+  --zerodha-section-alt: #f5f7fa;
 }
 
 body {
@@ -20,22 +26,24 @@ body {
   color: var(--zerodha-text);
 }
 
-/* Zerodha-style primary buttons (orange, not blue) */
+/* Zerodha-style primary buttons */
 .btn-primary,
 .hero-cta,
 .open-account-cta,
 .universe-cta {
-  background: var(--zerodha-orange) !important;
-  border-color: var(--zerodha-orange) !important;
+  background: var(--zerodha-primary) !important;
+  border-color: var(--zerodha-primary) !important;
   color: #fff !important;
+  font-weight: 500;
+  letter-spacing: 0.3px;
 }
 
 .btn-primary:hover,
 .hero-cta:hover,
 .open-account-cta:hover,
 .universe-cta:hover {
-  background: var(--zerodha-orange-hover) !important;
-  border-color: var(--zerodha-orange-hover) !important;
+  background: var(--zerodha-primary-hover) !important;
+  border-color: var(--zerodha-primary-hover) !important;
   color: #fff !important;
 }
 
@@ -240,7 +248,7 @@ html {
 }
 
 .zerodha-link:hover {
-  color: var(--zerodha-orange);
+  color: var(--zerodha-primary);
 }
 
 .zerodha-pricing-section {
@@ -301,7 +309,7 @@ a{
 }
 
 .nav-link:hover {
-  color: var(--zerodha-orange) !important;
+  color: var(--zerodha-primary) !important;
 }
 
 .zerodha-nav {
@@ -309,13 +317,13 @@ a{
   box-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
 
-/* Zerodha-style links (orange on hover) */
+/* Zerodha-style links (primary blue on hover) */
 a:not(.nav-link):not(.btn) {
   color: var(--zerodha-text);
 }
 
 a:not(.nav-link):not(.btn):hover {
-  color: var(--zerodha-orange);
+  color: var(--zerodha-primary);
 }
 
 @media (max-width: 991px) {
@@ -370,7 +378,7 @@ a:not(.nav-link):not(.btn):hover {
 
 .footer a:hover {
   opacity: 1;
-  color: var(--zerodha-orange);
+  color: var(--zerodha-primary);
 }
 
 .footer p {
@@ -389,7 +397,7 @@ a:not(.nav-link):not(.btn):hover {
 }
 
 .foootersLastPart a:hover {
-  color: var(--zerodha-orange);
+  color: var(--zerodha-primary);
   opacity: 1;
 }
 
@@ -795,7 +803,203 @@ form + p[style*="red"] {
   }
 }
 
+/* ========== ENHANCED LANDING PAGE STYLING ========== */
 
+/* Navbar enhancements */
+.zerodha-nav {
+  background: var(--zerodha-bg) !important;
+  border-bottom: 1px solid var(--zerodha-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.zerodha-nav:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand:hover .navbar-logo {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+/* Section backgrounds for better visual hierarchy */
+.section-light {
+  background: var(--zerodha-bg);
+}
+
+.section-alt {
+  background: var(--zerodha-section-alt);
+}
+
+/* Hero section enhancement */
+.hero-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, rgba(56, 126, 209, 0.03) 0%, rgba(56, 126, 209, 0.01) 100%);
+}
+
+.hero-cta,
+.open-account-cta,
+.universe-cta {
+  box-shadow: 0 2px 8px rgba(56, 126, 209, 0.15);
+  transition: all 0.3s ease;
+}
+
+.hero-cta:hover,
+.open-account-cta:hover,
+.universe-cta:hover {
+  box-shadow: 0 4px 16px rgba(56, 126, 209, 0.25);
+}
+
+/* Section titles with better styling */
+.section-title {
+  color: var(--zerodha-text);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: -0.3px;
+}
+
+.section-subtitle {
+  color: var(--zerodha-text-muted);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Home page sections */
+.home-section {
+  padding: 4rem 0;
+}
+
+.home-section:nth-child(even) {
+  background: var(--zerodha-section-alt);
+}
+
+/* Pricing boxes with hover effect */
+.home-pricing-box {
+  background: var(--zerodha-bg);
+  border: 1px solid var(--zerodha-border) !important;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.home-pricing-box:hover {
+  border-color: var(--zerodha-primary) !important;
+  box-shadow: 0 4px 12px rgba(56, 126, 209, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Awards and Stats styling */
+.awards-border {
+  border: 1px solid var(--zerodha-border);
+}
+
+/* Better link styling for nav items */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--zerodha-primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Footer enhancements */
+.zerodha-footer {
+  background: var(--zerodha-bg-alt);
+  border-top: 1px solid var(--zerodha-border);
+  padding-top: 3rem;
+}
+
+.footer-col {
+  margin-bottom: 2rem;
+}
+
+.footer-col img {
+  margin-bottom: 1rem;
+}
+
+.footer p {
+  font-size: clamp(0.95rem, 2.5vw, 1rem);
+  color: var(--zerodha-text);
+  font-weight: 500;
+}
+
+.footer a {
+  color: var(--zerodha-text);
+  opacity: 0.85;
+  margin-bottom: 0.5rem;
+  display: block;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.footer a:hover {
+  color: var(--zerodha-primary);
+  opacity: 1;
+  padding-left: 4px;
+}
+
+/* Social media links styling (prepared for future) */
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--zerodha-section-alt);
+  color: var(--zerodha-primary);
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: var(--zerodha-primary);
+  color: var(--zerodha-bg);
+  transform: translateY(-2px);
+}
+
+/* Text styling improvements */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.3px;
+}
+
+p {
+  line-height: 1.6;
+  color: var(--zerodha-text);
+}
+
+.text-muted {
+  color: var(--zerodha-text-muted) !important;
+}
+
+/* Container and spacing */
+.container {
+  max-width: 1140px;
+  padding-left: clamp(1rem, 5vw, 2rem);
+  padding-right: clamp(1rem, 5vw, 2rem);
+}
+
+/* Section padding */
+.section-padding {
+  padding-top: clamp(2rem, 8vw, 4rem);
+  padding-bottom: clamp(2rem, 8vw, 4rem);
+}
 
 /* ========== RESPONSIVE DESIGN ========== */
 
