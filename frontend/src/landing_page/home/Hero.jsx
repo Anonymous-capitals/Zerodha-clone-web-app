@@ -45,7 +45,7 @@ function Hero() {
       
       <div className="container p-4 p-md-5 text-center mb-5" style={{position: "relative", zIndex: 1}}>
         <div className="row justify-content-center">
-          <div style={{maxWidth: "100%", marginBottom: "2rem"}}>
+          <div style={{maxWidth: "300%", marginBottom: "2rem"}}>
             <img
               className="hero-image"
               src="media/images/zerotrade_hero.png"

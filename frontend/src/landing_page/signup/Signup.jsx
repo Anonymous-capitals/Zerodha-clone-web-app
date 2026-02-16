@@ -166,7 +166,7 @@ const SignUp = () => {
                 borderRadius: "12px",
                 filter: "drop-shadow(0 12px 32px rgba(40, 167, 69, 0.15))"
               }}
-              src="media/images/simulation_signup.png"
+              src="media/images/zerotrade_hero.png"
               alt="Trading Simulation Signup"
             />
           </div>
