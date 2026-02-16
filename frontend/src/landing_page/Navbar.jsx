@@ -7,7 +7,7 @@ function Navbar() {
       className="navbar navbar-expand-lg sticky-top main-nav"  // Updated class from "zerodha-nav" to "main-nav" for rebranding
       style={{ 
         background: "var(--tradesim-bg)",  // Updated variable from "--zerodha-bg" to "--tradesim-bg"
-        minHeight: "70px",
+        minHeight: "100px",
         paddingTop: "0.5rem",
         paddingBottom: "0.5rem"
       }}
