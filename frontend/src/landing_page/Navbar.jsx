@@ -40,6 +40,7 @@ function Navbar() {
             alt="Zerotrade"
             style={{
               maxHeight: "100px",
+              maxWidth: "100px",
               filter: "drop-shadow(0 2px 4px rgba(40, 167, 69, 0.1))"
             }}
           />
