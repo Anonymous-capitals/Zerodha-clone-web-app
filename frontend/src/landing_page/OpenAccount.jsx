@@ -9,7 +9,7 @@ function OpenAccount() {
         <h1 className="open-account-title mt-3">
           Open a Zerodha account
         </h1>
-        <p className="opacity-75 mt-4 mb-4 open-account-subtitle">
+        <p className="text-muted mt-4 mb-4 open-account-subtitle">
           Modern platforms and apps, ₹0 investments, and flat ₹20 intraday and F&O trades.
         </p>
         <button

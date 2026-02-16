@@ -5,26 +5,36 @@ import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
 
 const SellActionWindow = ({ uid }) => {
-  const [stockQuantity, setStockQuantity] = useState(1);
-  const [stockPrice, setStockPrice] = useState(0.0);
+  const [stockPrice, setStockPrice] = useState("");
+  const [stockQuantity, setStockQuantity] = useState("1");
   const [loading, setLoading] = useState(false);
   const { closeSellWindow } = useContext(GeneralContext);
 
+  const priceNum = parseFloat(stockPrice) || 0;
+  const qtyNum = Math.max(0, Math.floor(parseFloat(stockQuantity) || 0));
+  const total = priceNum * qtyNum;
+
+  const handlePriceChange = (e) => {
+    setStockPrice(e.target.value);
+  };
+
+  const handleQuantityChange = (e) => {
+    setStockQuantity(e.target.value);
+  };
+
   const handleSellClick = async () => {
+    if (!qtyNum || !priceNum) {
+      alert("Please enter valid quantity and price");
+      return;
+    }
     setLoading(true);
     try {
-      if (!stockQuantity || !stockPrice) {
-        alert("Please enter valid quantity and price");
-        return;
-      }
-
       await api.post("/newOrder", {
         name: uid,
-        qty: Number(stockQuantity),
-        price: Number(stockPrice),
+        qty: qtyNum,
+        price: priceNum,
         mode: "SELL",
       });
-
       alert("Order placed successfully!");
       closeSellWindow();
     } catch (error) {
@@ -49,7 +59,7 @@ const SellActionWindow = ({ uid }) => {
               type="number"
               name="qty"
               id="qty"
-              onChange={(e) => setStockQuantity(e.target.value)}
+              onChange={handleQuantityChange}
               value={stockQuantity}
               min="1"
             />
@@ -61,16 +71,20 @@ const SellActionWindow = ({ uid }) => {
               name="price"
               id="price"
               step="0.05"
-              onChange={(e) => setStockPrice(e.target.value)}
+              onChange={handlePriceChange}
               value={stockPrice}
               min="0"
+              placeholder="0.00"
             />
           </fieldset>
+        </div>
+        <div className="order-total">
+          Total value: <strong>₹{total.toFixed(2)}</strong>
         </div>
       </div>
 
       <div className="buttons">
-        <span>Margin required ₹140.65</span>
+        <span>Required: ₹{total.toFixed(2)}</span>
         <div>
           <Link className="btn btn-blue" onClick={handleSellClick} disabled={loading}>
             {loading ? "Processing..." : "Sell"}

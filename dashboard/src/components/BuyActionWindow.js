@@ -1,30 +1,48 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import api from "../api/axiosConfig";
 import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
 
+const AVAILABLE_FUNDS = 4043.1;
+
 const BuyActionWindow = ({ uid }) => {
-  const [stockQuantity, setStockQuantity] = useState(1);
-  const [stockPrice, setStockPrice] = useState(0.0);
+  const [stockPrice, setStockPrice] = useState("");
+  const [stockQuantity, setStockQuantity] = useState("1");
   const [loading, setLoading] = useState(false);
   const { closeBuyWindow } = useContext(GeneralContext);
 
+  const priceNum = parseFloat(stockPrice) || 0;
+  const qtyNum = Math.max(0, Math.floor(parseFloat(stockQuantity) || 0));
+  const total = priceNum * qtyNum;
+
+  const handlePriceChange = useCallback((e) => {
+    const val = e.target.value;
+    setStockPrice(val);
+    const p = parseFloat(val);
+    if (p > 0) {
+      const maxQty = Math.max(1, Math.floor(AVAILABLE_FUNDS / p));
+      setStockQuantity(String(maxQty));
+    }
+  }, []);
+
+  const handleQuantityChange = useCallback((e) => {
+    setStockQuantity(e.target.value);
+  }, []);
+
   const handleBuyClick = async () => {
+    if (!qtyNum || !priceNum) {
+      alert("Please enter valid quantity and price");
+      return;
+    }
     setLoading(true);
     try {
-      if (!stockQuantity || !stockPrice) {
-        alert("Please enter valid quantity and price");
-        return;
-      }
-
       await api.post("/newOrder", {
         name: uid,
-        qty: Number(stockQuantity),
-        price: Number(stockPrice),
+        qty: qtyNum,
+        price: priceNum,
         mode: "BUY",
       });
-
       alert("Order placed successfully!");
       closeBuyWindow();
     } catch (error) {
@@ -49,7 +67,7 @@ const BuyActionWindow = ({ uid }) => {
               type="number"
               name="qty"
               id="qty"
-              onChange={(e) => setStockQuantity(e.target.value)}
+              onChange={handleQuantityChange}
               value={stockQuantity}
               min="1"
             />
@@ -61,16 +79,25 @@ const BuyActionWindow = ({ uid }) => {
               name="price"
               id="price"
               step="0.05"
-              onChange={(e) => setStockPrice(e.target.value)}
+              onChange={handlePriceChange}
               value={stockPrice}
               min="0"
+              placeholder="0.00"
             />
           </fieldset>
+        </div>
+        <div className="order-total">
+          Total: <strong>₹{total.toFixed(2)}</strong>
+          {priceNum > 0 && (
+            <span className="order-total-hint">
+              (At this price you can buy up to {Math.max(1, Math.floor(AVAILABLE_FUNDS / priceNum))} shares)
+            </span>
+          )}
         </div>
       </div>
 
       <div className="buttons">
-        <span>Margin required ₹140.65</span>
+        <span>Margin required ₹{total.toFixed(2)}</span>
         <div>
           <Link className="btn btn-blue" onClick={handleBuyClick} disabled={loading}>
             {loading ? "Processing..." : "Buy"}

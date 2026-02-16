@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <footer style={{ backgroundColor: "rgba(251,251,251,255)" }}>
+    <footer className="zerodha-footer">
     <div className="container border-top mt-5 footer-container">
       <div className="row mt-4 mt-md-5 g-4">
         <div className="col-12 col-md-6 col-lg-3 footer-col">

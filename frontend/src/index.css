@@ -1,3 +1,14 @@
+/* ========== Zerodha clone: brand colors & typography ========== */
+:root {
+  --zerodha-orange: #f56834;
+  --zerodha-orange-hover: #e55a2b;
+  --zerodha-text: #424242;
+  --zerodha-text-muted: #666;
+  --zerodha-border: #e0e0e0;
+  --zerodha-bg: #ffffff;
+  --zerodha-bg-alt: #f7f7f7;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,6 +17,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  color: var(--zerodha-text);
+}
+
+/* Zerodha-style primary buttons (orange, not blue) */
+.btn-primary,
+.hero-cta,
+.open-account-cta,
+.universe-cta {
+  background: var(--zerodha-orange) !important;
+  border-color: var(--zerodha-orange) !important;
+  color: #fff !important;
+}
+
+.btn-primary:hover,
+.hero-cta:hover,
+.open-account-cta:hover,
+.universe-cta:hover {
+  background: var(--zerodha-orange-hover) !important;
+  border-color: var(--zerodha-orange-hover) !important;
+  color: #fff !important;
 }
 
 /* Touch-friendly primary buttons */
@@ -22,6 +53,7 @@ nav .nav-link {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+  color: var(--zerodha-text) !important;
 }
 
 code {
@@ -103,7 +135,8 @@ html {
 
 .hero-title {
   font-size: clamp(1.75rem, 5vw, 3rem) !important;
-  opacity: 0.85;
+  color: var(--zerodha-text);
+  font-weight: 600;
 }
 
 .hero-subtitle {
@@ -130,7 +163,8 @@ html {
 
 .open-account-title {
   font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
-  opacity: 0.85;
+  color: var(--zerodha-text);
+  font-weight: 600;
 }
 
 .open-account-subtitle {
@@ -139,7 +173,8 @@ html {
 
 .stats-title {
   font-size: clamp(1.5rem, 4vw, 2.3rem) !important;
-  opacity: 0.85;
+  color: var(--zerodha-text);
+  font-weight: 600;
 }
 
 .stats-ecosystem-img {
@@ -171,6 +206,8 @@ html {
 
 .awards-title {
   font-size: clamp(1.4rem, 4vw, 2rem) !important;
+  color: var(--zerodha-text);
+  font-weight: 600;
 }
 
 .awards-list {
@@ -192,15 +229,40 @@ html {
 
 .education-title {
   font-size: clamp(1.5rem, 3.5vw, 2.1rem) !important;
-  opacity: 0.85;
+  color: var(--zerodha-text);
+  font-weight: 600;
+}
+
+.zerodha-link {
+  color: var(--zerodha-text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.zerodha-link:hover {
+  color: var(--zerodha-orange);
+}
+
+.zerodha-pricing-section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .home-pricing-title {
   font-size: clamp(1.3rem, 3.5vw, 1.75rem) !important;
+  color: var(--zerodha-text);
 }
 
-.home-pricing-box h1 {
+.home-pricing-box {
+  background: var(--zerodha-bg);
+  border-color: var(--zerodha-border) !important;
+}
+
+.home-pricing-box h1,
+.home-pricing-box h2 {
   font-size: clamp(1.5rem, 4vw, 2.25rem) !important;
+  font-weight: 600;
+  color: var(--zerodha-text);
 }
 
 .HomeTextBlocks{
@@ -239,7 +301,21 @@ a{
 }
 
 .nav-link:hover {
-  color: #f56834 !important;
+  color: var(--zerodha-orange) !important;
+}
+
+.zerodha-nav {
+  border-bottom: 1px solid var(--zerodha-border);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+/* Zerodha-style links (orange on hover) */
+a:not(.nav-link):not(.btn) {
+  color: var(--zerodha-text);
+}
+
+a:not(.nav-link):not(.btn):hover {
+  color: var(--zerodha-orange);
 }
 
 @media (max-width: 991px) {
@@ -270,36 +346,51 @@ a{
 .footer-copyright {
   font-size: clamp(0.7rem, 2vw, 0.8rem);
   margin-top: 1rem;
+  color: var(--zerodha-text-muted);
 }
 
 .footer-disclaimer p {
   font-size: clamp(0.65rem, 1.8vw, 0.7rem) !important;
   line-height: 1.5;
+  color: var(--zerodha-text-muted);
+}
+
+.zerodha-footer {
+  background-color: var(--zerodha-bg-alt);
+  border-top: 1px solid var(--zerodha-border);
 }
 
 .footer a {
-  color: black;
+  color: var(--zerodha-text);
   opacity: 0.9;
   display: block;
   margin-bottom: 0.3rem;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 .footer a:hover {
   opacity: 1;
+  color: var(--zerodha-orange);
 }
 
 .footer p {
   font-size: clamp(0.95rem, 2.5vw, 1.2rem);
   font-weight: 500;
+  color: var(--zerodha-text);
 }
 
-.foootersLastPart a{
-  color: black;
+.foootersLastPart a {
+  color: var(--zerodha-text);
   opacity: 0.8;
   font-size: small;
   display: inline;
   margin-left: 1rem;
+  transition: color 0.2s ease;
+}
+
+.foootersLastPart a:hover {
+  color: var(--zerodha-orange);
+  opacity: 1;
 }
 
 .foootersLastPart{

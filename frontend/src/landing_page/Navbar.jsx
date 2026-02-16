@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <nav
-      className="navbar navbar-expand-lg border-bottom sticky-top"
-      style={{ background: "#fff", minHeight: "60px" }}
+      className="navbar navbar-expand-lg sticky-top zerodha-nav"
+      style={{ background: "var(--zerodha-bg)", minHeight: "60px" }}
     >
       <div className="container p-2 px-3">
         <Link className="navbar-brand d-flex align-items-center" to="/">

@@ -14,7 +14,7 @@ function Hero() {
         <h1 className="hero-title mt-4 mt-md-5">
           Invest in everything
         </h1>
-        <p className="hero-subtitle fs-5 opacity-85">
+        <p className="hero-subtitle fs-5 text-muted">
           Online platform to invest in stocks, derivatives, mutual funds, ETFs, bonds, and more.
         </p>
         <button
