@@ -18,7 +18,7 @@ function Navbar() {
             className="navbar-logo"
             src="media/images/logo.svg"
             alt="Zerotrade"
-            style={{maxHeight: "40px"}}
+            style={{maxHeight: "70px"}}
           />
         </Link>
         <button
