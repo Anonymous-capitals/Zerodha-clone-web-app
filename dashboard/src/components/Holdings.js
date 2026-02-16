@@ -5,6 +5,7 @@ import api from "../api/axiosConfig";
 const Holdings = () => {
   const [holdings, setHoldings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchHoldings = async () => {
@@ -13,6 +14,7 @@ const Holdings = () => {
         setHoldings(res.data || []);
       } catch (err) {
         console.error("Failed to load holdings", err);
+        setError("Failed to load holdings.");
         setHoldings([]);
       } finally {
         setLoading(false);
@@ -26,15 +28,46 @@ const Holdings = () => {
     return <p style={{ padding: "20px" }}>Loading holdings...</p>;
   }
 
-  const labels = holdings.map((h) => h.name || "—");
+  if (error) {
+    return <p style={{ padding: "20px", color: "red" }}>{error}</p>;
+  }
 
+  if (!holdings.length) {
+    return (
+      <div style={{ padding: "20px" }}>
+        <h3>Holdings (0)</h3>
+        <p>No holdings available.</p>
+      </div>
+    );
+  }
+
+  // 🔹 Portfolio Calculations
+  const totalInvestment = holdings.reduce((acc, stock) => {
+    const qty = Number(stock.qty) || 0;
+    const avg = Number(stock.avg) || 0;
+    return acc + qty * avg;
+  }, 0);
+
+  const totalCurrentValue = holdings.reduce((acc, stock) => {
+    const qty = Number(stock.qty) || 0;
+    const price = Number(stock.price) || 0;
+    return acc + qty * price;
+  }, 0);
+
+  const totalPnL = totalCurrentValue - totalInvestment;
+  const totalReturnPercent =
+    totalInvestment > 0
+      ? ((totalPnL / totalInvestment) * 100).toFixed(2)
+      : 0;
+
+  // 🔹 Graph Data
   const data = {
-    labels,
+    labels: holdings.map((h) => h.name || "—"),
     datasets: [
       {
-        label: "Stock Price",
+        label: "Current Price (LTP)",
         data: holdings.map((h) => Number(h.price) || 0),
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "rgba(54, 162, 235, 0.5)",
       },
     ],
   };
@@ -48,37 +81,37 @@ const Holdings = () => {
           <thead>
             <tr>
               <th>Instrument</th>
-              <th>Qty.</th>
+              <th>Qty</th>
               <th>Avg. cost</th>
               <th>LTP</th>
-              <th>Cur. val</th>
-              <th>P&amp;L</th>
+              <th>Current value</th>
+              <th>P&L</th>
               <th>Net chg.</th>
               <th>Day chg.</th>
             </tr>
           </thead>
 
           <tbody>
-            {holdings.map((stock, index) => {
+            {holdings.map((stock) => {
               const qty = Number(stock.qty) || 0;
               const avg = Number(stock.avg) || 0;
               const price = Number(stock.price) || 0;
 
-              const currValue = price * qty;
-              const pnl = currValue - avg * qty;
+              const currentValue = qty * price;
+              const pnl = currentValue - qty * avg;
 
-              const profClass = pnl >= 0 ? "profit" : "loss";
+              const pnlClass = pnl >= 0 ? "profit" : "loss";
               const dayClass = stock.isLoss ? "loss" : "profit";
 
               return (
-                <tr key={index}>
+                <tr key={stock._id || stock.name}>
                   <td>{stock.name || "-"}</td>
                   <td>{qty}</td>
                   <td>{avg.toFixed(2)}</td>
                   <td>{price.toFixed(2)}</td>
-                  <td>{currValue.toFixed(2)}</td>
-                  <td className={profClass}>{pnl.toFixed(2)}</td>
-                  <td className={profClass}>{stock.net ?? "-"}</td>
+                  <td>₹{currentValue.toFixed(2)}</td>
+                  <td className={pnlClass}>₹{pnl.toFixed(2)}</td>
+                  <td className={pnlClass}>{stock.net ?? "-"}</td>
                   <td className={dayClass}>{stock.day ?? "-"}</td>
                 </tr>
               );
@@ -87,22 +120,21 @@ const Holdings = () => {
         </table>
       </div>
 
+      {/* 🔹 Portfolio Summary */}
       <div className="row">
         <div className="col">
-          <h5>
-            29,875.<span>55</span>
-          </h5>
+          <h5>₹{totalInvestment.toFixed(2)}</h5>
           <p>Total investment</p>
         </div>
         <div className="col">
-          <h5>
-            31,428.<span>95</span>
-          </h5>
+          <h5>₹{totalCurrentValue.toFixed(2)}</h5>
           <p>Current value</p>
         </div>
         <div className="col">
-          <h5>1,553.40 (+5.20%)</h5>
-          <p>P&amp;L</p>
+          <h5 className={totalPnL >= 0 ? "profit" : "loss"}>
+            ₹{totalPnL.toFixed(2)} ({totalReturnPercent}%)
+          </h5>
+          <p>Total P&amp;L</p>
         </div>
       </div>
 
