@@ -39,7 +39,7 @@ function Navbar() {
             src="media/images/logo.svg"
             alt="Zerotrade"
             style={{
-              maxHeight: "60px",
+              maxHeight: "100px",
               filter: "drop-shadow(0 2px 4px rgba(40, 167, 69, 0.1))"
             }}
           />
