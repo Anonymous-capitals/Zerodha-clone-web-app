@@ -5,6 +5,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Touch-friendly primary buttons */
+button.btn,
+a.btn,
+.hero-cta,
+.open-account-cta,
+.universe-cta {
+  min-height: 44px;
+  padding: 0.5rem 1.25rem;
+}
+
+nav .nav-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 code {
@@ -14,6 +31,122 @@ code {
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hero & CTA buttons: responsive, touch-friendly */
+.hero-image {
+  height: auto;
+  max-height: 45vh;
+  width: 100%;
+  max-width: min(50vw, 520px);
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.hero-title {
+  font-size: clamp(1.75rem, 5vw, 3rem) !important;
+  opacity: 0.85;
+}
+
+.hero-subtitle {
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-cta,
+.open-account-cta {
+  min-width: 160px;
+  width: auto;
+  max-width: 90%;
+  margin: 0 auto;
+  border-radius: 6px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-cta:hover,
+.open-account-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.open-account-title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
+  opacity: 0.85;
+}
+
+.open-account-subtitle {
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+}
+
+.stats-title {
+  font-size: clamp(1.5rem, 4vw, 2.3rem) !important;
+  opacity: 0.85;
+}
+
+.stats-ecosystem-img {
+  width: 100%;
+  margin-bottom: 1rem;
+  max-width: 100%;
+}
+
+.stats-links a {
+  white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+  .stats-links {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .stats-links a {
+    white-space: normal;
+  }
+}
+
+.awards-broker-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.awards-title {
+  font-size: clamp(1.4rem, 4vw, 2rem) !important;
+}
+
+.awards-list {
+  padding-left: 1.25rem;
+}
+
+.awards-press-img {
+  width: 100%;
+  max-width: 90%;
+  height: auto;
+}
+
+.education-img {
+  width: 100%;
+  max-width: 80%;
+  margin-bottom: 1rem;
+  height: auto;
+}
+
+.education-title {
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem) !important;
+  opacity: 0.85;
+}
+
+.home-pricing-title {
+  font-size: clamp(1.3rem, 3.5vw, 1.75rem) !important;
+}
+
+.home-pricing-box h1 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem) !important;
 }
 
 .HomeTextBlocks{
@@ -36,19 +169,74 @@ a{
   text-decoration: none;
 }
 
-.nav-link{
-  margin-left: clamp(15px, 5vw, 40px);
+/* Navbar logo: responsive width, max so it doesn't overflow */
+.navbar-logo {
+  width: clamp(100px, 22vw, 140px);
+  height: auto;
+  max-width: 140px;
 }
 
-.footer a{
+.nav-link {
+  margin-left: clamp(8px, 2vw, 24px);
+  padding: 0.5rem 0.25rem !important;
+  font-weight: 500;
+  color: #424242 !important;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #f56834 !important;
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    padding-top: 0.75rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .nav-link {
+    margin-left: 0;
+    padding: 0.5rem 0 !important;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+}
+
+/* Footer responsive container */
+.footer-container {
+  padding-left: clamp(1rem, 5vw, 7.5rem) !important;
+  padding-right: clamp(1rem, 5vw, 7.5rem) !important;
+}
+
+.footer-logo {
+  width: clamp(100px, 35%, 180px);
+  max-width: 180px;
+  height: auto;
+}
+
+.footer-copyright {
+  font-size: clamp(0.7rem, 2vw, 0.8rem);
+  margin-top: 1rem;
+}
+
+.footer-disclaimer p {
+  font-size: clamp(0.65rem, 1.8vw, 0.7rem) !important;
+  line-height: 1.5;
+}
+
+.footer a {
   color: black;
   opacity: 0.9;
-  display: block; 
+  display: block;
   margin-bottom: 0.3rem;
+  transition: opacity 0.2s ease;
 }
 
-.footer p{
-  font-size: clamp(1rem, 3vw, 1.3rem);
+.footer a:hover {
+  opacity: 1;
+}
+
+.footer p {
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
   font-weight: 500;
 }
 
@@ -74,11 +262,73 @@ a{
   height: auto;
 }
 
-.Universe p{
+.universe-title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
+  opacity: 0.85;
+}
+
+.universe-subtitle {
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+}
+
+.Universe p,
+.universe-p {
   opacity: 0.7;
   font-size: clamp(0.7rem, 2.5vw, 0.8rem);
   margin-top: 0;
   text-align: center;
+}
+
+.universe-cta {
+  min-width: 160px;
+  width: auto;
+  margin: 0 auto !important;
+  border-radius: 6px;
+}
+
+/* Product sections: responsive padding and layout */
+.product-section {
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 992px) {
+  .product-section {
+    margin-bottom: 4rem;
+  }
+
+  .product-section-content {
+    padding: 2rem 3rem;
+  }
+
+  .product-section-right .product-section-content {
+    padding-left: 4rem;
+  }
+}
+
+.product-section-img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+}
+
+.product-section-title {
+  font-size: clamp(1.5rem, 4vw, 2.25rem) !important;
+}
+
+.product-section-desc {
+  font-size: clamp(0.9rem, 2.2vw, 1rem);
+  line-height: 1.6;
+}
+
+.product-section-links a {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+
+.store-badge {
+  height: 40px;
+  width: auto;
+  max-width: 140px;
 }
 
 .Universe{
@@ -94,6 +344,29 @@ a{
 
 .Pricing h3{
   font-size: clamp(1.2rem, 4vw, 1.5rem);
+}
+
+/* Products page hero */
+.products-hero {
+  min-height: 200px;
+  padding-bottom: 1.5rem;
+}
+
+.products-hero-title {
+  opacity: 0.85;
+  font-size: clamp(1.75rem, 5vw, 2.7rem) !important;
+  line-height: 1.2;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .products-hero-title {
+    margin-top: 3.5rem;
+  }
+}
+
+.products-hero-link {
+  font-size: clamp(1rem, 2.5vw, 1.1rem) !important;
 }
 
 .Brokerage h1{
@@ -132,14 +405,154 @@ a{
   margin-left: 2rem;
   opacity: 0.8;
 }
-.Ticket h3{
+.products-tech-link {
+  text-align: center;
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  opacity: 0.9;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .products-tech-link {
+    margin-bottom: 7rem;
+  }
+}
+/* Support hero */
+.support-hero {
+  min-height: 320px;
+  padding: clamp(2rem, 6vw, 5rem) 0;
+}
+
+.support-hero-container {
+  padding-left: clamp(1rem, 4vw, 2rem) !important;
+  padding-right: clamp(1rem, 4vw, 2rem) !important;
+}
+
+.support-hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem) !important;
+}
+
+.support-search-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (min-width: 768px) {
+  .support-search-wrap {
+    max-width: 35vw;
+  }
+}
+
+.support-search-input {
+  height: 3rem;
+  width: 100%;
+  padding: 0 3rem 0 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  color: #333;
+}
+
+.support-search-input::placeholder {
+  color: #999;
+}
+
+.support-search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  pointer-events: none;
+}
+
+.support-quick-links a {
+  margin-right: 1rem;
+}
+
+.support-featured {
+  margin-top: 0;
+}
+
+@media (min-width: 992px) {
+  .support-featured {
+    padding-left: 2rem;
+  }
+}
+
+/* Ticket / CreateTicket */
+.Ticket,
+.ticket-heading {
+  margin-left: 0;
+}
+
+@media (min-width: 992px) {
+  .Ticket {
+    margin-left: clamp(2rem, 10vw, 10rem);
+  }
+}
+
+.ticket-heading {
   font-weight: 350;
   opacity: 0.85;
-  margin: 2rem 0;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3.5vw, 1.5rem) !important;
 }
-.Ticket{
-  margin-left:10rem ;
+
+.ticket-col h3 {
+  font-size: clamp(1.1rem, 2.5vw, 1.25rem) !important;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.ticket-col a {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* About page */
+.about-hero-title {
+  opacity: 0.85;
+  font-size: clamp(1.5rem, 4vw, 2.1rem) !important;
+  line-height: 1.4;
+}
+
+.about-hero-content {
+  line-height: 1.8;
+  font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+  opacity: 0.98;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+@media (min-width: 992px) {
+  .about-hero-content {
+    margin-left: clamp(2rem, 6vw, 6rem) !important;
+    margin-right: clamp(2rem, 6vw, 6rem) !important;
+  }
+}
+
+/* Pricing page hero columns */
+.pricing-hero-title {
+  opacity: 0.85;
+  font-size: clamp(1.75rem, 5vw, 2.7rem) !important;
+  line-height: 1.2;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .pricing-hero-title {
+    margin-top: 3.5rem;
+  }
+}
+
+.pricing-hero-col {
+  padding: clamp(1rem, 4vw, 2rem);
+}
+
+.brokerage-heading {
+  font-size: clamp(1.1rem, 3.5vw, 1.4rem) !important;
+  text-align: center;
 }
 
 /* ========== AUTH FORM STYLING ========== */

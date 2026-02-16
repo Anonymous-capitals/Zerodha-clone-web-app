@@ -53,7 +53,7 @@ function ProductsPage() {
         googlePlay=""
         appleStore=""
       />
-      <p style={{textAlign:"center",fontSize:"1.35rem",opacity:"0.9",marginBottom:"7rem"}}>Want to know more about our technology stack? Check out the <a href="/">Zerodha.tech</a> blog.</p>
+      <p className="products-tech-link">Want to know more about our technology stack? Check out the <a href="/">Zerodha.tech</a> blog.</p>
       <Universe />
     </>
   );

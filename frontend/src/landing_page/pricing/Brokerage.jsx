@@ -4,15 +4,13 @@ function Brokerage() {
   return (
     <div className="container Brokerage">
       <div className="row">
-        <h1>
-          {" "}
-          <a href="/">Calculate your costs upfront</a> using our brokerage
-          calculator
+        <h1 className="brokerage-heading">
+          <a href="/">Calculate your costs upfront</a> using our brokerage calculator
         </h1>
       </div>
-      <div className="row Brokerage">
-        <h3 className="text-muted mb-5">Charges explained</h3>
-        <div className="col">
+      <div className="row Brokerage g-4">
+        <h3 className="text-muted mb-4 mb-md-5 col-12">Charges explained</h3>
+        <div className="col-12 col-lg-6">
           <h5>Securities/Commodities transaction tax</h5>
           <p>
             Tax by the government when transacting on the exchanges. Charged as
@@ -84,7 +82,7 @@ function Brokerage() {
             </li>
           </ul>
         </div>
-        <div className="col">
+        <div className="col-12 col-lg-6">
           <h5>GST</h5>
           <p>
             Tax levied by the government on the services rendered. 18% of (
@@ -138,7 +136,8 @@ function Brokerage() {
             balance in your trading account. Learn more.
           </p>
         </div>
-      
+      </div>
+      <div className="row Brokerage">
         <h5>Disclaimer</h5>
         <p>
           For Delivery based trades, a minimum of ₹0.01 will be charged per
