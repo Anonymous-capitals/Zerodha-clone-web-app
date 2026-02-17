@@ -18,12 +18,8 @@ const allowedOrigins = [
   // Development
   "http://localhost:3000",
   "http://localhost:3001",
-  // Old deployments
-  "https://zerodha-clone-web-app.vercel.app",
-  "https://zerodha-clone-web-app-sklx.vercel.app",
-  "https://zerodha-clone-dashboard.vercel.app",
-  // Current deployment
-  "https://zerodha-clone-web-app-ranit-gopes-projects.vercel.app",
+  "https://zerotrade-web-app-v7rb-akfs82ub1-ranit-gopes-projects.vercel.app",
+  "https://zerotrade-web-b6oe2ljg5-ranit-gopes-projects.vercel.app",
   // Actual deployed frontend and dashboard from environment variables
   process.env.CLIENT_URL,
   process.env.DASHBOARD_URL,
