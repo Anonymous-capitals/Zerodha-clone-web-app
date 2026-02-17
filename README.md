@@ -1,21 +1,23 @@
-# Zerodha Clone
+# Zerotrade – Web Demo Trading Application
 
-A full-stack web application inspired by the Zerodha trading platform.
+A full-stack web application demonstrating a modern online trading platform. Zerotrade is an educational project that showcases real-time trading, portfolio management, and market insights.
 
 This project is structured as three independent applications:
-- Frontend (public landing pages)
-- Dashboard (authenticated trading interface)
-- Backend (API and authentication server)
+- **Frontend** – Public landing pages with information about Zerotrade
+- **Dashboard** – Authenticated trading interface for users
+- **Backend** – REST API and authentication server
 
 ---
 
 ## Project Structure
 
-zerodha-clone/
-├── frontend/ # Landing page (signup, signin, marketing)
-├── dashboard/ # Authenticated trading dashboard
-├── backend/ # API, authentication, database
+```
+zerotrade/
+├── frontend/       # Landing page & marketing site
+├── dashboard/      # Authenticated trading dashboard
+├── backend/        # REST API & authentication
 └── README.md
+```
 
 
 ---
@@ -42,54 +44,58 @@ zerodha-clone/
 
 ---
 
+## Key Features
+
+- **User Authentication** – Secure signup/login with JWT tokens
+- **Trading Dashboard** – View orders, holdings, and positions
+- **Portfolio Management** – Track your investments and performance
+- **Order Management** – Buy and sell orders (demo data)
+- **User Profile** – Manage account settings
+- **Responsive Design** – Works seamlessly on desktop and mobile
+
+---
+
 ## Authentication Flow
 
-1. User signs up / logs in from **Frontend**
-2. Backend sets an HTTP-only JWT cookie
-3. User is redirected to **Dashboard**
-4. Dashboard verifies authentication via `/api/auth/verify`
-5. Logout clears authentication cookie
+1. User signs up or logs in from the **Frontend**
+2. Backend authenticates credentials and sets an HTTP-only JWT cookie
+3. User is redirected to the **Dashboard**
+4. Dashboard verifies authentication via `/api/auth/verify` endpoint
+5. Authenticated requests include the JWT cookie automatically
+6. Logout clears the authentication cookie
 
-No tokens are stored in localStorage.
+No tokens are stored in localStorage for security.
 
 ---
 
 ## Local Development
 
-### Backend
+Each component runs independently:
 
-localhost:5000
-
-### Frontend
-
-localhost:3000
-
-### Dashboard
-
-localhost:3001
-
-
-Each application runs independently.
+- **Backend API**: `http://localhost:5000`
+- **Frontend**: `http://localhost:3000`
+- **Dashboard**: `http://localhost:3001`
 
 ---
 
 ## Environment Variables
 
-Each app has its own `.env` file:
+Each application requires its own `.env` file:
 
-- `frontend/.env`
-- `dashboard/.env`
-- `backend/.env`
+```
+frontend/.env
+dashboard/.env
+backend/.env
+```
 
-Environment files are **not committed**.
+Environment files are **not** committed to the repository.
 
 ---
 
-## Notes
+## Deployment
 
-- API URLs are environment-driven
-- User data is isolated per account
-- Designed for easy deployment on Render (backend) and Vercel (frontend/dashboard)
+- **Backend**: Deploy to Render or similar Node.js platform
+- **Frontend & Dashboard**: Deploy to Vercel or similar React hosting
 
 ---
 
