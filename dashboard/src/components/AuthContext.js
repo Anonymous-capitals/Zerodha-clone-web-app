@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
-const API = process.env.REACT_APP_API_BASE_URL || "https://zerodha-clone-web-app-backend.onrender.com";
-const FRONTEND_URL = process.env.REACT_APP_URL || "https://zerodha-clone-web-app-ranit-gopes-projects.vercel.app";
+const API = process.env.REACT_APP_API_BASE_URL  
+const FRONTEND_URL = process.env.REACT_APP_URL 
 
 const AuthContext = createContext();
 

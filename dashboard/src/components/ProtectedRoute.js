@@ -23,7 +23,7 @@ const ProtectedRoute = () => {
   }
 
   if (!user) {
-    const frontendUrl = process.env.REACT_APP_URL || "https://zerodha-clone-web-app-ranit-gopes-projects.vercel.app";
+    const frontendUrl = process.env.REACT_APP_URL 
     // Use replace to prevent back button issues
     window.location.replace(frontendUrl);
     return null;
