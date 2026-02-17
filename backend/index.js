@@ -18,6 +18,8 @@ const allowedOrigins = [
   // Development
   "http://localhost:3000",
   "http://localhost:3001",
+  "https://zerotrade-web-app.vercel.app",
+  "https://zerotrade-web-app-v7rb.vercel.app",
   "https://zerotrade-web-app-v7rb-akfs82ub1-ranit-gopes-projects.vercel.app",
   "https://zerotrade-web-b6oe2ljg5-ranit-gopes-projects.vercel.app",
   // Actual deployed frontend and dashboard from environment variables
