@@ -114,7 +114,7 @@ function Stats() {
               animation: isVisible ? "fadeIn 0.6s ease-out 0.5s both" : "none"
             }}>
               <a 
-                href="/products"
+                href="/products/ProductsPage"
                 style={{
                   color: "var(--zerotrade-primary)",
                   fontWeight: 600,
