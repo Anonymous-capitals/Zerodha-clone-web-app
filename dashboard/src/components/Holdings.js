@@ -41,7 +41,6 @@ const Holdings = () => {
     );
   }
 
-  // 🔹 Portfolio Calculations
   const totalInvestment = holdings.reduce((acc, stock) => {
     const qty = Number(stock.qty) || 0;
     const avg = Number(stock.avg) || 0;
@@ -60,7 +59,6 @@ const Holdings = () => {
       ? ((totalPnL / totalInvestment) * 100).toFixed(2)
       : 0;
 
-  // 🔹 Graph Data
   const data = {
     labels: holdings.map((h) => h.name || "—"),
     datasets: [
@@ -120,7 +118,6 @@ const Holdings = () => {
         </table>
       </div>
 
-      {/* 🔹 Portfolio Summary */}
       <div className="row">
         <div className="col">
           <h5>₹{totalInvestment.toFixed(2)}</h5>

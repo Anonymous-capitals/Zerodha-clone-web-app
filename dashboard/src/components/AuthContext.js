@@ -18,7 +18,6 @@ export const AuthProvider = ({ children }) => {
 
       if (urlParams.get("token") && !localStorage.getItem("token")) {
         localStorage.setItem("token", token);
-        // Remove token from URL for cleaner history
         window.history.replaceState({}, document.title, window.location.pathname);
       }
 

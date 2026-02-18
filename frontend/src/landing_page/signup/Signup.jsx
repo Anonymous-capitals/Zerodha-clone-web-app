@@ -21,7 +21,6 @@ const SignUp = () => {
     setIsVisible(true);
   }, []);
 
-  // Calculate password strength
   const calculatePasswordStrength = (pwd) => {
     let strength = 0;
     if (pwd.length >= 8) strength += 25;
@@ -92,7 +91,6 @@ const SignUp = () => {
       paddingTop: "2rem",
       paddingBottom: "2rem"
     }}>
-      {/* Decorative background elements */}
       <div style={{
         position: "absolute",
         top: "-100px",
@@ -115,7 +113,6 @@ const SignUp = () => {
       }} />
 
       <div className="container p-md-5 p-3" style={{position: "relative", zIndex: 1}}>
-        {/* Header Section */}
         <div className="row" style={{
           textAlign: "center",
           marginBottom: "3rem",
@@ -142,12 +139,10 @@ const SignUp = () => {
           </h3>
         </div>
 
-        {/* Main Content */}
         <div className="row p-md-5 p-3" style={{
           maxWidth: "1000px",
           margin: "0 auto"
         }}>
-          {/* Image Section */}
           <div 
             className="col-md-6 col-12 p-md-5 p-3"
             style={{
@@ -171,7 +166,6 @@ const SignUp = () => {
             />
           </div>
 
-          {/* Form Section */}
           <div 
             className="col-md-6 col-12"
             style={{
@@ -216,7 +210,6 @@ const SignUp = () => {
                 animation: isVisible ? "slideUpFade 0.8s ease-out 0.2s both" : "none"
               }}
             >
-              {/* Username Field */}
               <div style={{position: "relative"}}>
                 <label style={{
                   display: "block",
@@ -257,7 +250,7 @@ const SignUp = () => {
                 </div>
               </div>
 
-              {/* Email Field */}
+
               <div style={{position: "relative"}}>
                 <label style={{
                   display: "block",
@@ -296,7 +289,6 @@ const SignUp = () => {
                 />
               </div>
 
-              {/* Password Field */}
               <div style={{position: "relative"}}>
                 <label style={{
                   display: "block",
@@ -334,7 +326,6 @@ const SignUp = () => {
                   required
                 />
                 
-                {/* Password Strength Indicator */}
                 {password && (
                   <div style={{marginTop: "0.75rem"}}>
                     <div style={{
@@ -366,7 +357,6 @@ const SignUp = () => {
                 )}
               </div>
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={signingUp}
@@ -410,7 +400,6 @@ const SignUp = () => {
               </button>
             </form>
 
-            {/* Message Display */}
             {message && (
               <div
                 style={{

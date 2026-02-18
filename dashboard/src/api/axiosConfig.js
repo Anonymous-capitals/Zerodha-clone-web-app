@@ -2,7 +2,6 @@ import axios from "axios";
 
 const API_BASE = process.env.REACT_APP_API_BASE_URL;
 
-/** Axios instance that sends the stored JWT for user-scoped API calls (orders, holdings, positions). */
 export const api = axios.create({
   baseURL: API_BASE,
   headers: { "Content-Type": "application/json" },

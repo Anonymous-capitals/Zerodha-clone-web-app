@@ -3,7 +3,7 @@ import api from "../api/axiosConfig";
 import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
 
-const AVAILABLE_FUNDS = 100000; // 1 lakh rupees
+const AVAILABLE_FUNDS = 100000;
 
 const BuyActionWindow = ({ uid }) => {
   const [stockPrice, setStockPrice] = useState("");

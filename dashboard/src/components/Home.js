@@ -7,7 +7,6 @@ import Profile from "./Profile";
 const Home = () => {
   return (
     <Routes>
-      {/* DASHBOARD PAGES */}
       <Route
         path="/"
         element={
@@ -17,7 +16,6 @@ const Home = () => {
         }
       />
 
-      {/* PROFILE PAGE (NO SIDEBAR OFFSET) */}
       <Route path="/profile" element={<Profile />} />
     </Routes>
   );

@@ -1,4 +1,3 @@
-// dashboard/src/index.js - COMPLETE REWRITE
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -22,7 +21,6 @@ root.render(
   <BrowserRouter>
     <AuthProvider>
       <Routes>
-        {/* Protected routes - all dashboard pages */}
         <Route element={<ProtectedRoute />}>
           <Route element={<AppLayout />}>
             <Route path="/" element={<Dashboard />} />
@@ -35,7 +33,6 @@ root.render(
           </Route>
         </Route>
         
-        {/* Catch all - redirect to home */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AuthProvider>

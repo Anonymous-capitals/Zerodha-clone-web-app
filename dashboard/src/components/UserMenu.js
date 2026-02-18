@@ -9,7 +9,6 @@ const UserMenu = () => {
 
   const firstLetter = user?.username?.charAt(0).toUpperCase() || "U";
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {

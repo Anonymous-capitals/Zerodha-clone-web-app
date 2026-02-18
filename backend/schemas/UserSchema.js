@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true } // REQUIRED
+  { timestamps: true }
 );
 
 module.exports = { UserSchema };

@@ -24,7 +24,6 @@ const ProtectedRoute = () => {
 
   if (!user) {
     const frontendUrl = process.env.REACT_APP_URL 
-    // Use replace to prevent back button issues
     window.location.replace(frontendUrl);
     return null;
   }

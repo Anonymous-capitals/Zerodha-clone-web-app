@@ -15,17 +15,14 @@ const PORT = process.env.PORT || 5000;
 const uri = process.env.MONGO_URL;
 
 const allowedOrigins = [
-  // Development
   "http://localhost:3000",
   "http://localhost:3001",
   "https://zerotrade-web-app.vercel.app",
   "https://zerotrade-web-app-v7rb.vercel.app",
   "https://zerotrade-web-app-v7rb-akfs82ub1-ranit-gopes-projects.vercel.app",
   "https://zerotrade-web-b6oe2ljg5-ranit-gopes-projects.vercel.app",
-  // Actual deployed frontend and dashboard from environment variables
   process.env.CLIENT_URL,
   process.env.DASHBOARD_URL,
-  // Add dynamic URLs from env to ensure deployed URLs are always included
   process.env.REACT_APP_FRONTEND_URL,
 ].filter(url => url && url.trim() !== "");
 
@@ -60,8 +57,6 @@ app.use(cookieParser());
 app.get("/health", (req, res) => {
   res.status(200).json({ status: "OK", timestamp: new Date().toISOString() });
 });
-
-/* ========== User-scoped data (require auth; stored per user in MongoDB Atlas) ========== */
 
 app.get("/userHoldings", requireAuth, async (req, res) => {
   try {

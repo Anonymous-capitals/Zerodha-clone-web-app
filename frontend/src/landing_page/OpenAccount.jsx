@@ -15,12 +15,10 @@ function OpenAccount() {
       position: "relative",
       overflow: "hidden"
     }}>
-      {/* Background decorative elements */}
-      <div 
-        style={{
-          position: "absolute",
-          top: "-100px",
-          left: "-100px",
+      <div style={{
+        position: "absolute",
+        top: "-100px",
+        left: "-100px",
           width: "400px",
           height: "400px",
           background: "radial-gradient(circle, rgba(40, 167, 69, 0.1) 0%, transparent 70%)",

@@ -3,7 +3,6 @@ import api from "../api/axiosConfig";
 import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
 
-// For demo purpose (later this should come from backend holdings)
 const AVAILABLE_SHARES = 200;
 
 const SellActionWindow = ({ uid }) => {

@@ -4,7 +4,6 @@ import TopBar from "./TopBar";
 const DashboardLayout = ({ children }) => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      {/* RIGHT CONTENT */}
       <div style={{ flex: 1, width: "100%" }}>
         <TopBar />
         <div>{children}</div>

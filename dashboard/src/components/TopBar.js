@@ -7,19 +7,16 @@ import UserMenu from "./UserMenu";
 const TopBar = () => {
   return (
     <div className="topbar">
-      {/* Left: Logo */}
       <div className="topbar-left">
         <Link to="/">
           <img src="/logo.png" alt="Zerotrade" className="topbar-logo" />
         </Link>
       </div>
 
-      {/* Center: Navigation */}
       <div className="topbar-center">
         <Menu />
       </div>
 
-      {/* Right: User avatar */}
       <div className="topbar-right">
         <UserMenu />
       </div>

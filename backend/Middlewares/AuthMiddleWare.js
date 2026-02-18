@@ -51,7 +51,6 @@ module.exports.userVerification = async (req, res) => {
   }
 };
 
-/** Attaches req.userId from JWT; use for protected API routes (orders, holdings, positions). */
 module.exports.requireAuth = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;

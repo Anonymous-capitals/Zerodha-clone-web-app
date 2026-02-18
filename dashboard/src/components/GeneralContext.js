@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import BuyActionWindow from "./BuyActionWindow";
 import SellActionWindow from "./SellActionWindow";
 
-//Context is something that is shared by different components and uid here is a unique ID which is nothing but name of the stock in our context
 const GeneralContext = React.createContext({
   openBuyWindow: (uid) => {},
   openSellWindow: (uid) => {},

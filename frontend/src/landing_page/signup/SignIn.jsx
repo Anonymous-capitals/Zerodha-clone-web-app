@@ -28,7 +28,6 @@ const SignIn = () => {
 
   useEffect(() => {
     setIsVisible(true);
-    // Load remembered email if exists
     const rememberedEmail = localStorage.getItem("rememberedEmail");
     if (rememberedEmail) {
       setEmail(rememberedEmail);
@@ -66,7 +65,6 @@ const SignIn = () => {
           return;
         }
 
-        // Save email if remember me is checked
         if (rememberMe) {
           localStorage.setItem("rememberedEmail", email);
         } else {
@@ -100,7 +98,6 @@ const SignIn = () => {
       paddingTop: "2rem",
       paddingBottom: "2rem"
     }}>
-      {/* Decorative background elements */}
       <div style={{
         position: "absolute",
         top: "-100px",
@@ -123,7 +120,6 @@ const SignIn = () => {
       }} />
 
       <div className="container p-md-5 p-3" style={{position: "relative", zIndex: 1}}>
-        {/* Header Section */}
         <div className="row" style={{
           textAlign: "center",
           marginBottom: "3rem",
@@ -150,12 +146,10 @@ const SignIn = () => {
           </h3>
         </div>
 
-        {/* Main Content */}
         <div className="row p-md-5 p-3" style={{
           maxWidth: "1000px",
           margin: "0 auto"
         }}>
-          {/* Image Section */}
           <div 
             className="col-md-6 col-12 p-md-5 p-3"
             style={{
@@ -179,7 +173,6 @@ const SignIn = () => {
             />
           </div>
 
-          {/* Form Section */}
           <div 
             className="col-md-6 col-12"
             style={{
@@ -223,7 +216,6 @@ const SignIn = () => {
                 animation: isVisible ? "slideUpFade 0.8s ease-out 0.2s both" : "none"
               }}
             >
-              {/* Email Field */}
               <div style={{position: "relative"}}>
                 <label style={{
                   display: "block",
@@ -262,7 +254,6 @@ const SignIn = () => {
                 />
               </div>
 
-              {/* Password Field */}
               <div style={{position: "relative"}}>
                 <label style={{
                   display: "block",
@@ -324,7 +315,6 @@ const SignIn = () => {
                 </div>
               </div>
 
-              {/* Remember Me & Forgot Password */}
               <div style={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -363,7 +353,6 @@ const SignIn = () => {
                 </a>
               </div>
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={loggingIn}
@@ -407,7 +396,6 @@ const SignIn = () => {
               </button>
             </form>
 
-            {/* Message Display */}
             {message && (
               <div
                 style={{

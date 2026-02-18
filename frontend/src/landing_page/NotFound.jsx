@@ -10,7 +10,6 @@ function NotFound() {
         <p className=' opacity-75 mt-4 mb-4'>
             Sorry the page you are looking for does not exist
         </p>
-        {/* <button className='opacity-75 p-2 mt-3 btn btn-primary fs-5 mb-5' style={{width:"20%",margin:"0 auto"}}>Sign up for free</button> */}
        </div>
        
     </div>
